@@ -11,7 +11,31 @@ import data.entities.Role;
 import data.entities.User;
 
 @Controller
-public abstract class UserController {
+public class UserController {
 
-    public abstract boolean registration(UserWrapper userWrapper);
+    private UserDao userDao;
+
+    private AuthorizationDao authorizationDao;
+
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Autowired
+    public void setAuthorizationDao(AuthorizationDao authorizationDao) {
+        this.authorizationDao = authorizationDao;
+    }
+    
+    public boolean registration(UserWrapper userWrapper) {
+        if (null == userDao.findByUsernameOrEmail(userWrapper.getUsername())
+                && null == userDao.findByUsernameOrEmail(userWrapper.getEmail())) {
+            User user = new User(userWrapper.getUsername(), userWrapper.getEmail(), userWrapper.getPassword(), userWrapper.getBirthDate());
+            userDao.save(user);
+            authorizationDao.save(new Authorization(user, Role.ADOPTER));
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
