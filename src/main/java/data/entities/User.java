@@ -22,21 +22,24 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
+    
+    @Column(nullable = false)
+    private String confirmedPassword;
 
-    private Calendar birthDate;
-
-    private boolean active;
-
+    @Column(nullable = false)
+    private String name;
+    
     public User() {
     }
 
-    public User(String username, String email, String password, Calendar birthDate) {
+    public User(String username, String email, String password, String confirmedPassword, String name) {
         this.username = username;
         this.email = email;
         this.password = new BCryptPasswordEncoder().encode(password);
-        this.birthDate = birthDate;
-        this.active = true;
+        this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
+        this.name = name;
     }
 
     public String getPassword() {
@@ -47,26 +50,22 @@ public class User {
         this.password = password;
     }
 
-    public Calendar getBirthDate() {
-        return birthDate;
+    public String getConfirmedPassword() {
+        return confirmedPassword;
     }
 
-    public void setBirthDate(Calendar birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -77,6 +76,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+        
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -100,9 +107,7 @@ public class User {
 
     @Override
     public String toString() {
-        String date = new SimpleDateFormat("dd-MMM-yyyy ").format(birthDate.getTime());
-        return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", birthDate=" + date
-                + ", active=" + active + "]";
+        return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", password=" + password + "]";
     }
 
 }

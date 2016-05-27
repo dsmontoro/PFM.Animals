@@ -30,7 +30,7 @@ public class UserController {
     public boolean registration(UserWrapper userWrapper) {
         if (null == userDao.findByUsernameOrEmail(userWrapper.getUsername())
                 && null == userDao.findByUsernameOrEmail(userWrapper.getEmail())) {
-            User user = new User(userWrapper.getUsername(), userWrapper.getEmail(), userWrapper.getPassword(), userWrapper.getBirthDate());
+            User user = new User(userWrapper.getUsername(), userWrapper.getEmail(), userWrapper.getPassword(), userWrapper.getConfirmedPassword(), userWrapper.getName());
             userDao.save(user);
             authorizationDao.save(new Authorization(user, Role.ADOPTER));
             return true;

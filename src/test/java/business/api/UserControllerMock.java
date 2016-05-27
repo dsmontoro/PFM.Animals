@@ -8,7 +8,7 @@ import data.entities.Role;
 
 public class UserControllerMock extends UserController {
 
-    private UserWrapper userWrapper= new UserWrapper("", "", "", Calendar.getInstance());
+    private UserWrapper userWrapper= new UserWrapper("", "", "", "","");
 
     @Override
     public boolean registration(UserWrapper userWrapper) {

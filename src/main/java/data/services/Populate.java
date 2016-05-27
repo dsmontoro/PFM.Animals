@@ -1,7 +1,5 @@
 package data.services;
 
-import java.util.GregorianCalendar;
-
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
@@ -27,6 +25,8 @@ public class Populate {
     private String adminEmail;
 
     private String adminPassword;
+    
+    private String adminName;
 
     @Autowired
     private Environment environment;
@@ -42,13 +42,14 @@ public class Populate {
         adminUsername = environment.getProperty("admin.username");
         adminEmail = environment.getProperty("admin.email");
         adminPassword = environment.getProperty("admin.password");
+        adminName = environment.getProperty("admin.name");
         createDefaultAdmin();
     }
 
     public void createDefaultAdmin() {
         User adminSaved = userDao.findByUsernameOrEmail(adminUsername);
         if (adminSaved == null) {
-            User admin = new User(adminUsername, adminEmail, adminPassword, new GregorianCalendar(1979, 07, 22));
+            User admin = new User(adminUsername, adminEmail, adminPassword, adminPassword, adminName);
             userDao.save(admin);
             authorizationDao.save(new Authorization(admin, Role.ADMIN));
         }

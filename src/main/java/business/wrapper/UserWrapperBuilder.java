@@ -1,16 +1,11 @@
 package business.wrapper;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-import data.entities.Role;
-
 public class UserWrapperBuilder {
 
     private UserWrapper userWrapper;
 
     public UserWrapperBuilder(int suffix) {
-        userWrapper = new UserWrapper("u" + suffix, "u" + suffix + "@gmail.com", "u" + suffix, new GregorianCalendar(1979, 07, 22));
+        userWrapper = new UserWrapper("u" + suffix, "u" + suffix + "@gmail.com", "u" + suffix, "u" + suffix, "name" + suffix);
     }
 
     public UserWrapperBuilder() {
@@ -32,8 +27,8 @@ public class UserWrapperBuilder {
         return this;
     }
 
-    public UserWrapperBuilder birthDate(Calendar birthDate) {
-        userWrapper.setBirthDate(birthDate);
+    public UserWrapperBuilder name(String name) {
+        userWrapper.setName(name);
         return this;
     }
     

@@ -49,7 +49,7 @@ public class DaosService {
     public User[] createAdopters(int initial, int size) {
         User[] users = new User[size];
         for (int i = 0; i < size; i++) {
-            users[i] = new User("u" + (i + initial), "u" + (i + initial) + "@gmail.com", "p", Calendar.getInstance());
+            users[i] = new User("u" + (i + initial), "u" + (i + initial) + "@gmail.com", "p", "p", "name" + (i + initial));
             userDao.save(users[i]);
             authorizationDao.save(new Authorization(users[i], Role.ADOPTER));
         }
