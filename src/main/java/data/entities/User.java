@@ -1,8 +1,5 @@
 package data.entities;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,15 +28,19 @@ public class User {
     @Column(nullable = false)
     private String name;
     
+    @Column(nullable = true)
+    private String address;
+    
     public User() {
     }
 
-    public User(String username, String email, String password, String confirmedPassword, String name) {
+    public User(String username, String email, String password, String confirmedPassword, String name, String address) {
         this.username = username;
         this.email = email;
         this.password = new BCryptPasswordEncoder().encode(password);
         this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
         this.name = name;
+        this.address = address;
     }
 
     public String getPassword() {
@@ -62,6 +63,10 @@ public class User {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public void setUsername(String username) {
         this.username = username;
     }
@@ -86,6 +91,14 @@ public class User {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public int hashCode() {
         return id;
@@ -107,7 +120,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", password=" + password + "]";
+        return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", password=" + password + ", address=" + address + "]";
     }
 
 }

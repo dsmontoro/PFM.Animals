@@ -4,21 +4,15 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.logging.log4j.LogManager;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class TokenResourceFunctionalTesting {
 
-    @Before
-    public void deleteAllBefore() {
-        new RestService().deleteAll();
-    }
-    
     @Test
-    public void testLoginPlayer() {
-        String token = new RestService().registerAndLoginAdopter();
+    public void testLoginUser() {
+        String token = new RestService().registerAndLoginUser();
         assertTrue(token.length() > 20);
-        LogManager.getLogger(this.getClass()).info("testLoginAdopter (token:" + token + ")");
+        LogManager.getLogger(this.getClass()).info("testLoginUser (token:" + token + ")");
     }
     
     @After

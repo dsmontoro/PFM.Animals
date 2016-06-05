@@ -31,5 +31,5 @@ public class AuthorizationDaoITest {
         assertEquals(1, roles.size());
         assertEquals(Role.ADOPTER, roles.get(0));
     }
-
+    
 }

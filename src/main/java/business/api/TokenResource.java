@@ -25,5 +25,4 @@ public class TokenResource {
     public TokenWrapper login(@AuthenticationPrincipal User activeUser) {
         return new TokenWrapper(tokenController.login(activeUser.getUsername()));
     }
-
 }

@@ -16,7 +16,7 @@ public class Authorization {
     private int id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private User user;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +30,7 @@ public class Authorization {
         this.user = user;
         this.role = role;
     }
-
+        
     public int getId() {
         return id;
     }
@@ -64,7 +64,7 @@ public class Authorization {
 
     @Override
     public String toString() {
-        return "Authorization [id=" + id + ", userId=" + user.getId() + ", role=" + role + "]";
+        return "Authorization [id=" + id + ", role=" + role + "]";
     }
 
 }

@@ -1,10 +1,5 @@
 package business.wrapper;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import data.entities.Role;
-
 public class UserWrapper {
 
     private String username;
@@ -17,16 +12,19 @@ public class UserWrapper {
     
     private String name;
     
+    private String address;
+    
 
     public UserWrapper() {
     }
 
-    public UserWrapper(String username, String email, String password, String confirmedPassword, String name) {
+    public UserWrapper(String username, String email, String password, String confirmedPassword, String name, String address) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.confirmedPassword = confirmedPassword;
         this.name = name;
+        this.address = address;
     }
 
     public String getUsername() {
@@ -68,10 +66,18 @@ public class UserWrapper {
     public void setName(String name) {
         this.name = name;
     }
+        
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     @Override
     public String toString() {
-        return "UserWrapper [username=" + username + ", email=" + email + ", password=" + password + ", name=" + name + "]";
+        return "UserWrapper [username=" + username + ", email=" + email + ", password=" + password + ", name=" + name + ", address=" + address + "]";
     }
 
 

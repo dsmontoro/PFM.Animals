@@ -18,13 +18,13 @@ public class RestService {
                 .post().build();
         return token.getToken();
     }
-
-    public String registerAndLoginAdopter() {
-        UserWrapper player = new UserWrapperBuilder().build();
-        new RestBuilder<Object>(URL).path(Uris.USERS).body(player).post().build();
-        TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.TOKENS).basicAuth(player.getUsername(), player.getPassword())
+    
+    public String registerAndLoginUser() {
+        UserWrapper user = new UserWrapperBuilder().build();
+        new RestBuilder<Object>(URL).path(Uris.USERS).body(user).post().build();
+        TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.TOKENS).basicAuth(user.getUsername(), user.getPassword())
                 .clazz(TokenWrapper.class).post().build();
         return token.getToken();
-    }
+    }    
     
 }

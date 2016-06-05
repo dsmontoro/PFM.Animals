@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 import data.daos.AuthorizationDao;
 import data.daos.UserDao;
 import data.entities.Role;
@@ -36,13 +37,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user != null) {
             List<Role> roleList = authorizationDao.findRoleByUser(user);
             return this.userBuilder(user.getUsername(), new BCryptPasswordEncoder().encode(""), roleList);
-        } else {
-            user = userDao.findByUsernameOrEmail(usernameOrEmailOrTokenValue);
+        }
+        else {
+            user = userDao.findByUsernameOrEmail(usernameOrEmailOrTokenValue);                       
             if (user != null) {
                 return this.userBuilder(user.getUsername(), user.getPassword(), Arrays.asList(Role.AUTHENTICATED));
-            } else {
-                throw new UsernameNotFoundException("Usuario no encontrado");
-            }
+            }                
+            else {
+                throw new UsernameNotFoundException("No encontrado");
+            }               
         }
     }
 

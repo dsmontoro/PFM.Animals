@@ -22,9 +22,9 @@ public class Token {
     private String value;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private User user;
-    
+            
     @Column(nullable = false)
     private Calendar expiredDate;
 
@@ -82,6 +82,6 @@ public class Token {
     @Override
     public String toString() {
         String date = new SimpleDateFormat("dd-MMM-yyyy ").format(expiredDate.getTime());
-        return "Token [id=" + id + ", value=" + value + ", userId=" + user.getId() + ", expiredDate="+ date + "]";
+        return "Token [id=" + id + ", value=" + value + ", expiredDate="+ date + "]";
     }
 }

@@ -16,11 +16,6 @@ import business.wrapper.UserWrapperBuilder;
 
 public class UserResourceFunctionalTesting {
 
-    @Before
-    public void deleteAllBefore() {
-        new RestService().deleteAll();
-    }
-    
     @Test
     public void testCreate() {
         for (int i = 0; i < 4; i++) {

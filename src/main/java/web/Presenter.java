@@ -1,10 +1,8 @@
 package web;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
-import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +55,7 @@ public class Presenter {
     @RequestMapping(value = "/user-register", method = RequestMethod.POST)
     public String registerUserSubmit(@Valid User user, BindingResult bindingResult, Model model) {
         if (!bindingResult.hasErrors()) {
-            UserWrapper userWrapper = new UserWrapper(user.getUsername(), user.getEmail(), user.getPassword(), user.getConfirmedPassword(), user.getName());
+            UserWrapper userWrapper = new UserWrapper(user.getUsername(), user.getEmail(), user.getPassword(), user.getConfirmedPassword(), user.getName(), user.getAddress());
             if (!user.getPassword().equalsIgnoreCase(user.getConfirmedPassword())) {
                 bindingResult.rejectValue("confirmedPassword", "error.user", "Las passwords no coinciden");
             }

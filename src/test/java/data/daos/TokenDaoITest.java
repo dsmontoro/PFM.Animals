@@ -35,6 +35,14 @@ public class TokenDaoITest {
         assertEquals(token, tokenDao.findByUser(token.getUser()));
         assertNull(tokenDao.findByUser(user));
     }
+    
+    @Test 
+    public void testFindByAssociation() {
+        Token token = (Token) daosService.getMap().get("ta1");
+        User association = (User) daosService.getMap().get("a4");
+        assertEquals(token, tokenDao.findByUser(token.getUser()));
+        assertNull(tokenDao.findByUser(association));
+    }
         
     @Test
     public void testFindNotExpiredTokenByUser() {

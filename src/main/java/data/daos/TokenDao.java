@@ -11,10 +11,10 @@ import data.entities.User;
 public interface TokenDao extends JpaRepository<Token, Integer> {
 
     Token findByUser(User user);
-    
+        
     @Query("SELECT t FROM Token t WHERE t.user = ?1 AND t.expiredDate > NOW()")
     Token findNotExpiredByUser(User user);
-    
+            
     @Transactional
     @Modifying
     @Query("DELETE FROM Token t WHERE t.expiredDate < NOW()")    

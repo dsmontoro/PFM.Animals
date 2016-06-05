@@ -21,15 +21,16 @@ public class UserDaoITest {
 
     @Autowired
     private UserDao userDao;
-
+    
     @Autowired
     private DaosService daosService;
-
-    @Test
+    
+    
+    @Test 
     public void testCreate() {
-        assertTrue(userDao.count() >= 4);
+        assertTrue(userDao.count() >= 8);
     }
-
+    
     @Test
     public void testFindDistinctByUsernameOrEmail() {
         User u1 = (User) daosService.getMap().get("u1");
@@ -45,4 +46,5 @@ public class UserDaoITest {
         assertEquals(u1, userDao.findByTokenValue(t1.getValue()));
         assertNull(userDao.findByTokenValue("kk"));
     }
+    
 }

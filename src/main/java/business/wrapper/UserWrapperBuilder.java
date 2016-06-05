@@ -5,7 +5,7 @@ public class UserWrapperBuilder {
     private UserWrapper userWrapper;
 
     public UserWrapperBuilder(int suffix) {
-        userWrapper = new UserWrapper("u" + suffix, "u" + suffix + "@gmail.com", "u" + suffix, "u" + suffix, "name" + suffix);
+        userWrapper = new UserWrapper("u" + suffix, "u" + suffix + "@gmail.com", "u" + suffix, "u" + suffix, "name" + suffix, "address" + suffix);
     }
 
     public UserWrapperBuilder() {
@@ -29,6 +29,11 @@ public class UserWrapperBuilder {
 
     public UserWrapperBuilder name(String name) {
         userWrapper.setName(name);
+        return this;
+    }
+    
+    public UserWrapperBuilder address(String address) {
+        userWrapper.setAddress(address);
         return this;
     }
     
