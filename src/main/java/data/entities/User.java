@@ -34,6 +34,15 @@ public class User {
     public User() {
     }
 
+    public User(String username, String email, String password, String confirmedPassword, String name) {
+        this.username = username;
+        this.email = email;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
+        this.name = name;
+        this.address = null;
+    }
+    
     public User(String username, String email, String password, String confirmedPassword, String name, String address) {
         this.username = username;
         this.email = email;

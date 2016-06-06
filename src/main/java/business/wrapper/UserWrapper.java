@@ -18,6 +18,15 @@ public class UserWrapper {
     public UserWrapper() {
     }
 
+    public UserWrapper(String username, String email, String password, String confirmedPassword, String name) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.confirmedPassword = confirmedPassword;
+        this.name = name;
+        this.address = null;
+    }
+    
     public UserWrapper(String username, String email, String password, String confirmedPassword, String name, String address) {
         this.username = username;
         this.email = email;

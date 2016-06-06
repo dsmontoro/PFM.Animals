@@ -52,7 +52,7 @@ public class Populate {
     public void createDefaultAdmin() {
         User adminSaved = userDao.findByUsernameOrEmail(adminUsername);
         if (adminSaved == null) {
-            User admin = new User(adminUsername, adminEmail, adminPassword, adminConfirmedPassword, adminName, null);
+            User admin = new User(adminUsername, adminEmail, adminPassword, adminConfirmedPassword, adminName);
             userDao.save(admin);
             authorizationDao.save(new Authorization(admin, Role.ADMIN));
         }
