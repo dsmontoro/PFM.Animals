@@ -3,6 +3,9 @@ package api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.junit.After;
 import org.junit.Before;
@@ -13,9 +16,12 @@ import org.springframework.web.client.HttpClientErrorException;
 import business.api.Uris;
 import business.wrapper.UserWrapper;
 import business.wrapper.UserWrapperBuilder;
+import data.entities.User;
 
 public class UserResourceFunctionalTesting {
 
+    RestService restService = new RestService();
+    
     @Before
     public void deleteBefore() {
         new RestService().deleteAll();
@@ -54,6 +60,14 @@ public class UserResourceFunctionalTesting {
             LogManager.getLogger(this.getClass()).info(
                     "testRepeatingFieldCreate (" + httpError.getMessage() + "):\n    " + httpError.getResponseBodyAsString());
         }
+    }
+    
+    @Test
+    public void testShowAssociations() {
+        final int ASSOCIATIONS = 5;
+        restService.registerAsociacions(ASSOCIATIONS);;
+        List<User> list = Arrays.asList(new RestBuilder<User[]>(RestService.URL).path(Uris.USERS).clazz(User[].class).get().build());
+        assertEquals(ASSOCIATIONS + 1, list.size());
     }
 
     @After
