@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import business.wrapper.AssociationState;
+import business.wrapper.UserState;
 import business.wrapper.UserWrapper;
 import data.daos.AuthorizationDao;
 import data.daos.UserDao;
@@ -47,12 +49,25 @@ public class UserController {
         }
     }
     
-    public List<User> showUsers() {
-        List<User> userList = new ArrayList<>();
-        for (User user : userDao.findAll()) {
-            userList.add(user);
+    public List<UserState> showUsers() {
+        List<UserState> userList = new ArrayList<>();
+        List<User> usersList = new ArrayList<>();
+        usersList = (List<User>) userDao.findAllUsers();
+        for (User user : usersList) {
+            UserState userState = new UserState(user); 
+            userList.add(userState);
         }
         return userList;
+    }
+    
+    public List<AssociationState> showAssociations() {
+        List<AssociationState> associationList = new ArrayList<>();
+        ;
+        for (User user : userDao.findAllAssociations()) {
+            AssociationState userState = new AssociationState(user); 
+            associationList.add(userState);
+        }
+        return associationList;
     }
 }
 

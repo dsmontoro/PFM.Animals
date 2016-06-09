@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import business.api.exceptions.AlreadyExistUserFieldException;
 import business.api.exceptions.InvalidUserFieldException;
 import business.controllers.UserController;
+import business.wrapper.UserState;
 import business.wrapper.UserWrapper;
-import data.entities.User;
 
 @RestController
 @RequestMapping(Uris.SERVLET_MAP + Uris.USERS)
@@ -38,7 +38,7 @@ public class UserResource {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public List<User> showUsers() {
+    public List<UserState> showUsers() {
         return userController.showUsers();
     }
 
