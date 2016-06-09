@@ -131,8 +131,8 @@ public class Animal {
 		this.description = description;
 	}
 	
-	 @Override
-	    public String toString() {
+	@Override
+	public String toString() {
 	        return "Animal [id=" + id + ", name=" + name + ", tipo=" + tipo + ", raza=" + raza + ", idUser=" + idUser + ", publishDate=" + publishDate +  ", city=" + city +  ", district=" + district +  ", age=" + age +  ", description=" + description +  "]";
-	    }
+	}
 }
