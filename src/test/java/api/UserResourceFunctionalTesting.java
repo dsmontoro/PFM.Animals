@@ -66,8 +66,8 @@ public class UserResourceFunctionalTesting {
     public void testShowAssociations() {
         final int ASSOCIATIONS = 5;
         restService.registerAsociacions(ASSOCIATIONS);;
-        List<User> list = Arrays.asList(new RestBuilder<User[]>(RestService.URL).path(Uris.USERS).clazz(User[].class).get().build());
-        assertEquals(ASSOCIATIONS + 1, list.size());
+        List<User> list = Arrays.asList(new RestBuilder<User[]>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).clazz(User[].class).get().build());
+        assertEquals(ASSOCIATIONS, list.size());
     }
 
     @After
