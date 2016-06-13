@@ -21,4 +21,6 @@ public interface UserDao extends JpaRepository<User, Integer> {
     @Query("select user from User user where user.address != null")
     public List<User> findAllAssociations();
 
+    User findUserById(int id);
+
 }

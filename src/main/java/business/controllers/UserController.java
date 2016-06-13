@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
 import business.wrapper.UserState;
 import business.wrapper.UserWrapper;
@@ -68,6 +69,12 @@ public class UserController {
             associationList.add(userState);
         }
         return associationList;
+    }
+    
+    public AssociationDetails showAssociation(int id) {
+        User association = userDao.findUserById(id);        
+        
+        return (new AssociationDetails(association));        
     }
 }
 
