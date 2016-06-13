@@ -2,29 +2,43 @@ package business.wrapper;
 
 import data.entities.User;
 
-public class AssociationState {
+public class AssociationDetails {
 
+    private int id;
+    
     private String username;
 
     private String name;
     
+    private String email;
+    
     private String address;
 
-    public AssociationState() {
+    public AssociationDetails() {
     }
 
-    public AssociationState(String username, String name, String address) { 
+    public AssociationDetails(int id, String username, String name, String email, String address) { 
         super();
+        this.id = id;
         this.username = username;
         this.name = name;
+        this.email = email;
         this.address = address;
     }
 
-    public AssociationState(User association) {
-        this(association.getUsername(), association.getName(), association.getAddress());
+    public AssociationDetails(User association) {
+        this(association.getId(), association.getUsername(), association.getName(), association.getEmail(), association.getAddress());
     }
     
     
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -41,16 +55,19 @@ public class AssociationState {
         this.name = name;
     }    
     
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "AssociationState [username=" + username + ", name=" + name + ", address=" + address + "]";
     }
 }
