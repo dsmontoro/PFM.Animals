@@ -3,6 +3,8 @@ package config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -38,6 +40,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         // Incompatible con "redirect:/action"
         viewResolver.setViewNames("*");
         return viewResolver;
+    }
+    
+    @Bean
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(500000000);
+        return multipartResolver;
     }
 
 }

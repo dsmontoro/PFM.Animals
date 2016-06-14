@@ -9,11 +9,10 @@ public class UserWrapper {
     private String password;
 
     private String confirmedPassword;
-    
+
     private String name;
-    
+
     private String address;
-    
 
     public UserWrapper() {
     }
@@ -26,7 +25,7 @@ public class UserWrapper {
         this.name = name;
         this.address = null;
     }
-    
+
     public UserWrapper(String username, String email, String password, String confirmedPassword, String name, String address) {
         this.username = username;
         this.email = email;
@@ -59,7 +58,7 @@ public class UserWrapper {
     public void setPassword(String password) {
         this.password = password;
     }
-            
+
     public String getConfirmedPassword() {
         return confirmedPassword;
     }
@@ -75,7 +74,7 @@ public class UserWrapper {
     public void setName(String name) {
         this.name = name;
     }
-        
+
     public String getAddress() {
         return address;
     }
@@ -86,9 +85,8 @@ public class UserWrapper {
 
     @Override
     public String toString() {
-        return "UserWrapper [username=" + username + ", email=" + email + ", password=" + password + ", name=" + name + ", address=" + address + "]";
+        return "UserWrapper [username=" + username + ", email=" + email + ", password=" + password + ", name=" + name + ", address="
+                + address + "]";
     }
-
-
 
 }
