@@ -43,6 +43,7 @@ public class UserResource {
     @ResponseBody
     @RequestMapping(value = "/photo", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] testphoto() throws IOException {
+        //TODO: Hay que pasar el nombre de la imagen como parametro
         InputStream in = servletContext.getResourceAsStream("/images/Chrysanthemum.jpg");
         return IOUtils.toByteArray(in);
     }
