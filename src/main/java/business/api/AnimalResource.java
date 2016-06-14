@@ -3,12 +3,14 @@ package business.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import business.api.exceptions.InvalidAnimalUserEception;
+import business.api.exceptions.NotFoundAnimalException;
 import business.controllers.AnimalController;
 import business.wrapper.AnimalWrapper;
 import data.entities.Animal;
@@ -44,5 +46,16 @@ public class AnimalResource {
         if (!this.animalController.registration(animalWrapper)) {
             throw new InvalidAnimalUserEception();
         }
+    }
+    
+    @RequestMapping(value = Uris.ID, method = RequestMethod.DELETE)
+    public void deleteAnimal(@PathVariable int id) throws NotFoundAnimalException
+    {
+    	if(!animalController.existsAnimal(id)){
+    		throw new NotFoundAnimalException();
+    	}
+    	if(!animalController.deleteAnimal(id)){
+    		throw new NotFoundAnimalException();
+    	}
     }
 }

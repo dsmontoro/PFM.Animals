@@ -35,4 +35,23 @@ public class AnimalController {
             animalDao.save(animal);
             return true;        
     }
+	
+	public boolean existsAnimal(int id){
+		if(animalDao.exists(id)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public boolean deleteAnimal(int id){
+		if(!existsAnimal(id)){
+			return false;
+		}
+		else{
+			animalDao.delete(id);
+			return true;
+		}
+	}
 }
