@@ -14,6 +14,8 @@ public class UserWrapper {
 
     private String address;
 
+    private String imgName;
+
     public UserWrapper() {
     }
 
@@ -24,6 +26,7 @@ public class UserWrapper {
         this.confirmedPassword = confirmedPassword;
         this.name = name;
         this.address = null;
+        this.imgName = null;
     }
 
     public UserWrapper(String username, String email, String password, String confirmedPassword, String name, String address) {
@@ -33,8 +36,10 @@ public class UserWrapper {
         this.confirmedPassword = confirmedPassword;
         this.name = name;
         this.address = address;
+        this.imgName = null;
     }
-
+    
+   
     public String getUsername() {
         return username;
     }
@@ -81,6 +86,14 @@ public class UserWrapper {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
     }
 
     @Override
