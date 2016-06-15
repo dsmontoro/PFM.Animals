@@ -21,5 +21,9 @@ public class Uris {
     public static final String LOGOUT = "/logout";
     
     public static final String ACTIVE = "/active";
+    
+    public static final String QUERY = "/query";
+    
+    public static final String NAME = "/{name}";
 
 }

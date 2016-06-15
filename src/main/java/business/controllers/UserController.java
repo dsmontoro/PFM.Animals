@@ -63,7 +63,6 @@ public class UserController {
     
     public List<AssociationState> showAssociations() {
         List<AssociationState> associationList = new ArrayList<>();
-        ;
         for (User user : userDao.findAllAssociations()) {
             AssociationState userState = new AssociationState(user); 
             associationList.add(userState);
@@ -75,6 +74,16 @@ public class UserController {
         User association = userDao.findUserById(id);        
         
         return (new AssociationDetails(association));        
+    }
+    
+    public List<AssociationState> searchAssociations(String name) {
+        List<AssociationState> associations = new ArrayList<>();
+        for (User association : userDao.searchAssociationsByName(name)) {
+            AssociationState associationState = new AssociationState(association);
+            associations.add(associationState);
+        }
+        
+        return associations;
     }
 }
 
