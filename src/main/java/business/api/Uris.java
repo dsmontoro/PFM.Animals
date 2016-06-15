@@ -6,6 +6,8 @@ public class Uris {
 
     public static final String ID = "/{id}";
     
+    public static final String TOKEN_VALUE = "/{tokenValue}";
+    
     public static final String ADMINS = "/admins";
     
     public static final String USERS = "/users";
@@ -15,6 +17,8 @@ public class Uris {
     public static final String TOKENS = "/tokens";
     
     public static final String LOGIN = "/login";
+    
+    public static final String LOGOUT = "/logout";
     
     public static final String ACTIVE = "/active";
 

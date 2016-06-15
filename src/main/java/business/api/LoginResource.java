@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import business.controllers.LoginController;
+import business.wrapper.TokenWrapper;
 import business.wrapper.UserWrapper;
 
 @RestController
@@ -21,8 +22,8 @@ public class LoginResource {
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void login(@RequestBody UserWrapper userWrapper) {
-        loginController.login(userWrapper);
+    public TokenWrapper login(@RequestBody UserWrapper userWrapper) {
+        return new TokenWrapper(loginController.login(userWrapper));
     }
 
 }

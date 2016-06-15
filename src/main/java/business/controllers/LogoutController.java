@@ -1,7 +1,6 @@
 package business.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import business.wrapper.UserWrapper;
@@ -12,9 +11,9 @@ import data.entities.Token;
 import data.entities.User;
 
 @Controller
-public class LoginController {
+public class LogoutController {
 
-    private TokenDao tokenDao;
+private TokenDao tokenDao;
     
     private UserDao userDao;
     
@@ -28,16 +27,11 @@ public class LoginController {
         this.userDao = userDao;
     }
     
-    public String login(UserWrapper userWrapper) {
-        User user = userDao.findByUsernameOrEmail(userWrapper.getUsername());
+    public boolean logout(String tokenValue) {
+        User user = userDao.findByTokenValue(tokenValue);
         assert user != null;
-        if (new BCryptPasswordEncoder().matches(userWrapper.getPassword(), user.getPassword())) {
-            Token token = new Token(user);
-            tokenDao.save(token);
-            return token.getValue();
-        }
-        
-        return "";
-        
+        Token token = tokenDao.findByUser(user);
+        tokenDao.delete(token);
+        return true;        
     }
 }
