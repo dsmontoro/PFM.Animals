@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,6 @@ import business.api.exceptions.InvalidUserFieldException;
 import business.controllers.UserController;
 import business.wrapper.UserState;
 import business.wrapper.UserWrapper;
-import data.entities.User;
 
 @RestController
 @RequestMapping(Uris.SERVLET_MAP + Uris.USERS)
@@ -41,10 +41,10 @@ public class UserResource {
     }
     
     @ResponseBody
-    @RequestMapping(value = "/photo", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] testphoto() throws IOException {
-        //TODO: Hay que pasar el nombre de la imagen como parametro
-        InputStream in = servletContext.getResourceAsStream("/images/Chrysanthemum.jpg");
+    @RequestMapping(value = "/photo/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] testphoto(@PathVariable String id) throws IOException {
+        //TODO:  Hay que pasar el nombre de la imagen como parametro
+        InputStream in = servletContext.getResourceAsStream("/images/" + id +".jpg");
         return IOUtils.toByteArray(in);
     }
 
