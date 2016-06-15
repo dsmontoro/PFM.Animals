@@ -21,16 +21,19 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-    
+
     @Column(nullable = false)
     private String confirmedPassword;
 
     @Column(nullable = false)
     private String name;
-    
+
     @Column(nullable = true)
     private String address;
-    
+
+    @Column(nullable = true)
+    private String imgName;
+
     public User() {
     }
 
@@ -42,7 +45,7 @@ public class User {
         this.name = name;
         this.address = null;
     }
-    
+
     public User(String username, String email, String password, String confirmedPassword, String name, String address) {
         this.username = username;
         this.email = email;
@@ -50,6 +53,17 @@ public class User {
         this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
         this.name = name;
         this.address = address;
+        this.imgName = null;
+    }
+
+    public User(String username, String email, String password, String confirmedPassword, String name, String address, String imgName) {
+        this.username = username;
+        this.email = email;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
+        this.name = name;
+        this.address = address;
+        this.imgName = imgName;
     }
 
     public String getPassword() {
@@ -75,11 +89,11 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -91,7 +105,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-        
+
     public String getName() {
         return name;
     }
@@ -106,6 +120,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
     }
 
     @Override
@@ -129,7 +151,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", password=" + password + ", address=" + address + "]";
+        return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", confirmedPassword="
+                + confirmedPassword + ", name=" + name + ", address=" + address + ", imgName=" + imgName + "]";
     }
 
 }
