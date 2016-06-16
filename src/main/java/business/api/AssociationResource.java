@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import business.controllers.UserController;
 import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
-import data.entities.User;
 
 @RestController
 @RequestMapping(Uris.SERVLET_MAP + Uris.USERS + Uris.ASSOCIATIONS)
@@ -32,6 +31,11 @@ public class AssociationResource {
     @RequestMapping(value = Uris.ID, method = RequestMethod.GET)
     public AssociationDetails showAssociation(@PathVariable int id) {
         return userController.showAssociation(id);
+    }
+    
+    @RequestMapping(value = Uris.QUERY + Uris.NAME, method = RequestMethod.GET)
+    public List<AssociationState> searchAssociations(@PathVariable String name) {
+        return userController.searchAssociations(name);
     }
 
 }
