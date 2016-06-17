@@ -24,7 +24,7 @@ public class LogoutResourceFunctionalTesting {
         new RestBuilder<Object>(RestService.URL).path(Uris.USERS).body(new UserWrapperBuilder(1).build()).post().build();
         TokenWrapper tokenWrapper = (TokenWrapper) new RestBuilder<TokenWrapper>(RestService.URL).path(Uris.LOGIN).body(userWrapper)
         		.clazz(TokenWrapper.class).post().build();
-        new RestBuilder<Object>(RestService.URL).path(Uris.LOGOUT).pathId(tokenWrapper.getToken()).post().build();
+        new RestBuilder<Object>(RestService.URL).path(Uris.LOGOUT).body(tokenWrapper).post().build();
     }
 	
 	@After
