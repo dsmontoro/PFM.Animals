@@ -5,32 +5,35 @@ import data.entities.User;
 public class AssociationDetails {
 
     private int id;
-    
+
     private String username;
 
     private String name;
-    
+
     private String email;
-    
+
     private String address;
+
+    private String imgName;
 
     public AssociationDetails() {
     }
 
-    public AssociationDetails(int id, String username, String name, String email, String address) { 
+    public AssociationDetails(int id, String username, String name, String email, String address, String imgName) {
         super();
         this.id = id;
         this.username = username;
         this.name = name;
         this.email = email;
         this.address = address;
+        this.imgName = imgName;
     }
 
     public AssociationDetails(User association) {
-        this(association.getId(), association.getUsername(), association.getName(), association.getEmail(), association.getAddress());
+        this(association.getId(), association.getUsername(), association.getName(), association.getEmail(), association.getAddress(),
+                association.getImgName());
     }
-    
-    
+
     public int getId() {
         return id;
     }
@@ -53,8 +56,8 @@ public class AssociationDetails {
 
     public void setName(String name) {
         this.name = name;
-    }    
-    
+    }
+
     public String getEmail() {
         return email;
     }
@@ -70,4 +73,19 @@ public class AssociationDetails {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
+    }
+
+    @Override
+    public String toString() {
+        return "AssociationDetails [id=" + id + ", username=" + username + ", name=" + name + ", email=" + email + ", address=" + address
+                + ", imgName=" + imgName + "]";
+    }
+
 }

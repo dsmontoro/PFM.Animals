@@ -4,6 +4,8 @@ import data.entities.User;
 
 public class AssociationState {
 
+    private int id;
+
     private String username;
 
     private String name;
@@ -15,8 +17,9 @@ public class AssociationState {
     public AssociationState() {
     }
 
-    public AssociationState(String username, String name, String address, String imgName) {
+    public AssociationState(int id, String username, String name, String address, String imgName) {
         super();
+        this.id = id;
         this.username = username;
         this.name = name;
         this.address = address;
@@ -24,7 +27,15 @@ public class AssociationState {
     }
 
     public AssociationState(User association) {
-        this(association.getUsername(), association.getName(), association.getAddress(), association.getImgName());
+        this(association.getId(), association.getUsername(), association.getName(), association.getAddress(), association.getImgName());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -61,7 +72,8 @@ public class AssociationState {
 
     @Override
     public String toString() {
-        return "AssociationState [username=" + username + ", name=" + name + ", address=" + address + ", imgName=" + imgName + "]";
+        return "AssociationState [id=" + id + ", username=" + username + ", name=" + name + ", address=" + address + ", imgName=" + imgName
+                + "]";
     }
 
 }
