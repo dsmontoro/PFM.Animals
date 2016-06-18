@@ -8,9 +8,9 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import data.entities.Animal;
 import data.entities.Authorization;
 import data.entities.Role;
 import data.entities.Token;
@@ -33,12 +33,16 @@ public class DaosService {
     private DataService genericService;
 
     private Map<String, Object> map;
-
+    
+    @Autowired
+    private AnimalDao animalDao;
+    
     @PostConstruct
     public void populate() {
         map = new HashMap<>();
         User[] users = this.createAdopters(0, 4);
         User[] associations = this.createAssociations(0, 4);
+        Animal[] animals = this.createAnimals(0, 4);
         for (User user : users) {
             map.put(user.getUsername(), user);
         }
@@ -50,6 +54,9 @@ public class DaosService {
         }        
         for (Token token : this.createTokens(associations)) {
             map.put("t" + token.getUser().getUsername(), token);
+        }
+        for (Animal animal : animals) {
+            map.put(animal.getName(), animal);
         }
     }
 
@@ -82,6 +89,15 @@ public class DaosService {
             tokenList.add(token);
         }
         return tokenList;
+    }
+    
+    public Animal[] createAnimals(int initial,int size){
+    	Animal[] animals = new Animal[size];
+    	for (int i = 0; i < size; i++) {
+            animals[i] = new Animal("a" + (i + initial), "t" + (i + initial),"r" + (i + initial), (i + initial));
+            animalDao.save(animals[i]);
+        }
+    	return animals;
     }
 
     public Map<String, Object> getMap() {

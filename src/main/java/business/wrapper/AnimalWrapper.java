@@ -14,10 +14,6 @@ public class AnimalWrapper {
 	
     private Date publishDate;
 	
-    private String city;
-	
-    private Date district;
-	
     private int age;
 	
     private String description;
@@ -74,22 +70,6 @@ public class AnimalWrapper {
 		this.publishDate = publishDate;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public Date getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(Date district) {
-		this.district = district;
-	}
-
 	public int getAge() {
 		return age;
 	}
@@ -108,6 +88,6 @@ public class AnimalWrapper {
     
 	@Override
 	public String toString() {
-	        return "AnimalWrapper [name=" + name + ", tipo=" + tipo + ", raza=" + raza + ", idUser=" + idUser + ", publishDate=" + publishDate +  ", city=" + city +  ", district=" + district +  ", age=" + age +  ", description=" + description +  "]";
+	        return "AnimalWrapper [name=" + name + ", tipo=" + tipo + ", raza=" + raza + ", idUser=" + idUser + ", publishDate=" + publishDate + ", age=" + age +  ", description=" + description +  "]";
 	}
 }

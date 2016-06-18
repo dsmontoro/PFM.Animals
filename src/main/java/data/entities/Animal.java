@@ -13,31 +13,25 @@ public class Animal {
     @GeneratedValue
     private int id;
 	
-	@Column(unique = false, nullable = false)
+	@Column(nullable = false)
     private String name;
 	
-	@Column(unique = false, nullable = false)
+	@Column(nullable = false)
     private String tipo;
 	
-	@Column(unique = false, nullable = false)
+	@Column(nullable = false)
     private String raza;
 	
 	@Column(unique = false, nullable = false)
     private int idUser;
 	
-	@Column(unique = false, nullable = false)
+	@Column(nullable = false)
     private Date publishDate;
 	
-	@Column(unique = false, nullable = true)
-    private String city;
-	
-	@Column(unique = false, nullable = true)
-    private Date district;
-	
-	@Column(unique = false, nullable = true)
+	@Column(nullable = true)
     private int age;
 	
-	@Column(unique = false, nullable = true)
+	@Column(nullable = true)
     private String description;
 	
 	public Animal() {
@@ -99,22 +93,6 @@ public class Animal {
 		this.publishDate = publishDate;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public Date getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(Date district) {
-		this.district = district;
-	}
-
 	public int getAge() {
 		return age;
 	}
@@ -133,6 +111,6 @@ public class Animal {
 	
 	@Override
 	public String toString() {
-	        return "Animal [id=" + id + ", name=" + name + ", tipo=" + tipo + ", raza=" + raza + ", idUser=" + idUser + ", publishDate=" + publishDate +  ", city=" + city +  ", district=" + district +  ", age=" + age +  ", description=" + description +  "]";
+	        return "Animal [id=" + id + ", name=" + name + ", tipo=" + tipo + ", raza=" + raza + ", idUser=" + idUser + ", publishDate=" + publishDate + ", age=" + age +  ", description=" + description +  "]";
 	}
 }
