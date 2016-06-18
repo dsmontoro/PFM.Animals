@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import business.api.MailService;
 import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
 import business.wrapper.UserState;
@@ -22,6 +23,8 @@ public class UserController {
     private UserDao userDao;    
 
     private AuthorizationDao authorizationDao;
+    
+    private MailService mailService;
 
     @Autowired
     public void setUserDao(UserDao userDao) {
@@ -31,6 +34,11 @@ public class UserController {
     @Autowired
     public void setAuthorizationDao(AuthorizationDao authorizationDao) {
         this.authorizationDao = authorizationDao;
+    }
+    
+    @Autowired
+    public void setMailService(MailService mailService) {
+        this.mailService = mailService;
     }
     
     public boolean registration(UserWrapper userWrapper) {
@@ -44,6 +52,9 @@ public class UserController {
             else {
                 authorizationDao.save(new Authorization(user, Role.ASSOCIATION));
             }
+            
+            mailService.sendMail("pfm.animals@gmail.com", user.getEmail(), "Bienvenido", "Bienvenido, " + user.getName() + ", has sido registrado en nuestro portal.");
+            
             return true;
         } else {
             return false;
