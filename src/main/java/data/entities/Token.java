@@ -2,6 +2,7 @@ package data.entities;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class Token {
     public Token(User user) {
         assert user != null;
         this.user = user;
-        this.value = new Encrypt().encryptInBase64UrlSafe("" + user.getUsername() + user.getPassword());
+        this.value = new Encrypt().encryptInBase64UrlSafe("" + user.getId() + user.getUsername() + Long.toString(new Date().getTime()) + user.getPassword());
         this.expiredDate = Calendar.getInstance();
         this.expiredDate.add(Calendar.HOUR, 1);
     }
