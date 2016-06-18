@@ -44,6 +44,7 @@ public class User {
         this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
         this.name = name;
         this.address = null;
+        this.imgName = null;
     }
 
     public User(String username, String email, String password, String confirmedPassword, String name, String address) {
