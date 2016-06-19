@@ -31,7 +31,7 @@ public class AnimalController {
 	
 	public boolean registration(AnimalWrapper animalWrapper) {
         
-            Animal animal = new Animal(animalWrapper.getName(), animalWrapper.getTipo() , animalWrapper.getRaza() , animalWrapper.getIdUser());
+            Animal animal = new Animal(animalWrapper.getName(), animalWrapper.getTipo() , animalWrapper.getRaza() , animalWrapper.getIdUser() , animalWrapper.getAge() , animalWrapper.getDescription());
             animalDao.save(animal);
             return true;        
     }

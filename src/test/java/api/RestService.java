@@ -1,9 +1,12 @@
 package api;
 
 import business.api.Uris;
+import business.wrapper.AnimalWrapper;
+import business.wrapper.AnimalWrapperBuilder;
 import business.wrapper.TokenWrapper;
 import business.wrapper.UserWrapper;
 import business.wrapper.UserWrapperBuilder;
+import data.entities.Animal;
 
 public class RestService {
 
@@ -33,6 +36,17 @@ public class RestService {
             new RestBuilder<Object>(URL).path(Uris.USERS).body(user).post().build();
         }
         
+    }
+    
+    public void registerAnimals(int numAnimals){
+    	for (int i = 0;i < numAnimals;i++){
+    		AnimalWrapper animal = new AnimalWrapperBuilder(i).build();
+    		new RestBuilder<Object>(URL).path(Uris.ANIMALS).body(animal).post().build();
+    	}
+    }
+    
+    public void deleteAnimal(String id){
+    	new RestBuilder<Object>(URL).path(Uris.ANIMALS).param(id, id).delete().build();
     }
     
 }

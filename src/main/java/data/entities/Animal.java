@@ -29,7 +29,7 @@ public class Animal {
     private Date publishDate;
 	
 	@Column(nullable = true)
-    private int age;
+    private String age;
 	
 	@Column(nullable = true)
     private String description;
@@ -45,6 +45,16 @@ public class Animal {
 		this.publishDate = new java.util.Date();
 	}
 
+	public Animal(String name,String tipo,String raza,int idUser,String age,String description){
+		this.name = name;
+		this.tipo = tipo;
+		this.raza = raza;
+		this.idUser = idUser;
+		this.publishDate = new java.util.Date();
+		this.age = age;
+		this.description = description;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -93,11 +103,11 @@ public class Animal {
 		this.publishDate = publishDate;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

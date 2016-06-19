@@ -14,7 +14,7 @@ public class AnimalWrapper {
 	
     private Date publishDate;
 	
-    private int age;
+    private String age;
 	
     private String description;
     
@@ -27,7 +27,17 @@ public class AnimalWrapper {
 		this.tipo = tipo;
 		this.raza = raza;
 		this.idUser = idUser;
-		this.publishDate = new java.util.Date();
+		this.publishDate = new Date();
+	}
+    
+    public AnimalWrapper(String name,String tipo,String raza,int idUser,String age,String description){
+		this.name = name;
+		this.tipo = tipo;
+		this.raza = raza;
+		this.idUser = idUser;
+		this.publishDate = new Date();
+		this.age = age;
+		this.description = description;
 	}
 
 	public String getName() {
@@ -70,11 +80,11 @@ public class AnimalWrapper {
 		this.publishDate = publishDate;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

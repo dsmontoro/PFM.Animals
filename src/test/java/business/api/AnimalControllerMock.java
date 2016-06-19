@@ -7,11 +7,12 @@ public class AnimalControllerMock extends AnimalController{
 
 	private AnimalWrapper animalWrapper = new AnimalWrapper("", "", "", 0);
 	
-	public AnimalWrapper getUserWrapper() {
+	
+	public AnimalWrapper getAnimalWrapper() {
         return animalWrapper;
     }
 
-    public void setUserWrapper(AnimalWrapper animalWrapper) {
+    public void setAnimalWrapper(AnimalWrapper animalWrapper) {
         this.animalWrapper = animalWrapper;
     }
 }
