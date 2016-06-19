@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()//
-                .antMatchers(Uris.SERVLET_MAP + Uris.LOGIN + "/**").permitAll()
+                .antMatchers(Uris.SERVLET_MAP + Uris.LOGIN).permitAll()
                 .and().httpBasic();//
     }
 

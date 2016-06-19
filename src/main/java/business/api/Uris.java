@@ -23,5 +23,7 @@ public class Uris {
     public static final String QUERY = "/query";
     
     public static final String NAME = "/{name}";
+    
+    public static final String IMAGES = "/images";
 
 }
