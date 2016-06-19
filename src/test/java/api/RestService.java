@@ -14,7 +14,8 @@ public class RestService {
     }
 
     public String loginAdmin() {
-        TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.TOKENS).basicAuth("admin", "admin").clazz(TokenWrapper.class)
+        UserWrapper userWrapper = new UserWrapperBuilder().username("admin").password("admin").build();
+        TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.LOGIN).body(userWrapper).clazz(TokenWrapper.class)
                 .post().build();
         return token.getToken();
     }
@@ -22,7 +23,7 @@ public class RestService {
     public String registerAndLoginUser() {
         UserWrapper user = new UserWrapperBuilder().build();
         new RestBuilder<Object>(URL).path(Uris.USERS).body(user).post().build();
-        TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.TOKENS).basicAuth(user.getUsername(), user.getPassword())
+        TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.LOGIN).body(user)
                 .clazz(TokenWrapper.class).post().build();
         return token.getToken();
     }   
