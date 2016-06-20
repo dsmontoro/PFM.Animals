@@ -5,7 +5,7 @@ import business.wrapper.UserWrapper;
 
 public class UserControllerMock extends UserController {
 
-    private UserWrapper userWrapper= new UserWrapper("", "", "", "","");
+    private UserWrapper userWrapper= new UserWrapper("", "", "", "", "", "", "", "", "", "");
 
     @Override
     public boolean registration(UserWrapper userWrapper) {

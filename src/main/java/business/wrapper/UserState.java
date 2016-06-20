@@ -6,21 +6,18 @@ public class UserState {
 
     private String username;
 
-    private String name;
-
     private String imgName;
 
     public UserState() {
     }
 
-    public UserState(String username, String name, String imgName) {
+    public UserState(String username, String imgName) {
         this.username = username;
-        this.name = name;
         this.imgName = imgName;
     }
 
     public UserState(User user) {
-        this(user.getUsername(), user.getName(), user.getImgName());
+        this(user.getUsername(), user.getImgName());
     }
 
     public String getUsername() {
@@ -29,14 +26,6 @@ public class UserState {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getImgName() {
@@ -49,7 +38,7 @@ public class UserState {
 
     @Override
     public String toString() {
-        return "UserState [username=" + username + ", name=" + name + ", imgName=" + imgName + "]";
+        return "UserState [username=" + username + ", imgName=" + imgName + "]";
     }
 
 }

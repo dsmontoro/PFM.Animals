@@ -28,12 +28,12 @@ public class UserDaoITest {
     
     @Test 
     public void testCreate() {
-        assertTrue(userDao.count() >= 8);
+        assertTrue(userDao.count() >= 4);
     }
     
     @Test
     public void testFindDistinctByUsernameOrEmail() {
-        User u1 = (User) daosService.getMap().get("u1");
+        User u1 = (User) daosService.getMap().get("a1");
         assertEquals(u1, userDao.findByUsernameOrEmail(u1.getUsername()));
         assertEquals(u1, userDao.findByUsernameOrEmail(u1.getEmail()));
         assertNull(userDao.findByUsernameOrEmail("kk"));
@@ -41,8 +41,8 @@ public class UserDaoITest {
 
     @Test
     public void testFindByTokenValue() {
-        User u1 = (User) daosService.getMap().get("u1");
-        Token t1 = (Token) daosService.getMap().get("tu1");
+        User u1 = (User) daosService.getMap().get("a1");
+        Token t1 = (Token) daosService.getMap().get("ta1");
         assertEquals(u1, userDao.findByTokenValue(t1.getValue()));
         assertNull(userDao.findByTokenValue("kk"));
     }

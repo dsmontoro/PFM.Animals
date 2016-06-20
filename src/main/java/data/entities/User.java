@@ -15,72 +15,67 @@ public class User {
 
     @Column(unique = true, nullable = false)
     private String username;
+    
+    @Column(nullable = true)
+    private String surname;
 
     @Column(unique = true, nullable = false)
-    private String email;
+    private String email;   
 
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String confirmedPassword;
-
-    @Column(nullable = false)
-    private String name;
-
+    @Column(nullable = true)
+    private String phone;
+    
+    @Column(nullable = true)
+    private String association;
+    
     @Column(nullable = true)
     private String address;
 
     @Column(nullable = true)
+    private String state;
+    
+    @Column(nullable = true)
+    private String town;
+    
+    @Column(nullable = true)
+    private String postalCode;
+    
+    @Column(nullable = false)
+    private String password;
+    
+    @Column(nullable = true)
     private String imgName;
+    
 
     public User() {
     }
 
-    public User(String username, String email, String password, String confirmedPassword, String name) {
+    public User(String username, String email, String password) {
         this.username = username;
+        this.surname = null;
         this.email = email;
-        this.password = new BCryptPasswordEncoder().encode(password);
-        this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
-        this.name = name;
+        this.phone = null;
+        this.association = null;
         this.address = null;
+        this.state = null;
+        this.town = null;
+        this.postalCode = null;        
+        this.password = new BCryptPasswordEncoder().encode(password);
         this.imgName = null;
     }
 
-    public User(String username, String email, String password, String confirmedPassword, String name, String address) {
-        this.username = username;
+    public User(String username, String surname, String email, String phone, String association, String address, String state, String town, String postalCode, String password) {
+    	this.username = username;
+        this.surname = surname;
         this.email = email;
-        this.password = new BCryptPasswordEncoder().encode(password);
-        this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
-        this.name = name;
+        this.phone = phone;
+        this.association = association;
         this.address = address;
+        this.state = state;
+        this.town = town;
+        this.postalCode = postalCode;        
+        this.password = new BCryptPasswordEncoder().encode(password);
         this.imgName = null;
-    }
-
-    public User(String username, String email, String password, String confirmedPassword, String name, String address, String imgName) {
-        this.username = username;
-        this.email = email;
-        this.password = new BCryptPasswordEncoder().encode(password);
-        this.confirmedPassword = new BCryptPasswordEncoder().encode(confirmedPassword);
-        this.name = name;
-        this.address = address;
-        this.imgName = imgName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getConfirmedPassword() {
-        return confirmedPassword;
-    }
-
-    public void setConfirmedPassword(String confirmedPassword) {
-        this.confirmedPassword = confirmedPassword;
     }
 
     public int getId() {
@@ -107,14 +102,6 @@ public class User {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -130,8 +117,65 @@ public class User {
     public void setImgName(String imgName) {
         this.imgName = imgName;
     }
+        
+    public String getSurname() {
+		return surname;
+	}
 
-    @Override
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getAssociation() {
+		return association;
+	}
+
+	public void setAssociation(String association) {
+		this.association = association;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
+	}
+
+    public String getPassword() {
+        return password;
+    }
+    
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+
+	@Override
     public int hashCode() {
         return id;
     }
@@ -152,8 +196,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", confirmedPassword="
-                + confirmedPassword + ", name=" + name + ", address=" + address + ", imgName=" + imgName + "]";
+        return "User [id=" + id + ", username=" + username + ", surname=" + surname + ", email=" + email + ", phone=" + phone + 
+        		", association=" + association + ", address=" + address + ", state=" + state + ", town=" + town + 
+        		", postalCode=" + postalCode + ", password=" + password +", imgName=" + imgName + "]";
     }
 
 }

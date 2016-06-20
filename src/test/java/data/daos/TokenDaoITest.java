@@ -27,15 +27,7 @@ public class TokenDaoITest {
 
     @Autowired
     private DaosService daosService;
-
-    @Test
-    public void testFindByUser() {
-        Token token = (Token) daosService.getMap().get("tu1");
-        User user = (User) daosService.getMap().get("u4");
-        assertEquals(token, tokenDao.findByUser(token.getUser()));
-        assertNull(tokenDao.findByUser(user));
-    }
-    
+   
     @Test 
     public void testFindByAssociation() {
         Token token = (Token) daosService.getMap().get("ta1");
@@ -46,20 +38,20 @@ public class TokenDaoITest {
         
     @Test
     public void testFindNotExpiredTokenByUser() {
-        Token token1 = (Token) daosService.getMap().get("tu0");
+        Token token1 = (Token) daosService.getMap().get("ta0");
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.HOUR, -1);
         token1.setExpiredDate(expiredDate);
         tokenDao.save(token1);
         assertNull(tokenDao.findNotExpiredByUser(token1.getUser()));
         
-        Token token2 = (Token) daosService.getMap().get("tu1");
+        Token token2 = (Token) daosService.getMap().get("ta1");
         assertNotNull(tokenDao.findNotExpiredByUser(token2.getUser()));
     }
     
     @Test
     public void testDeleteExpiredTokens() {
-        Token token = (Token) daosService.getMap().get("tu0");
+        Token token = (Token) daosService.getMap().get("ta0");
         Calendar expiredDate = Calendar.getInstance();
         expiredDate.add(Calendar.HOUR, -1);
         token.setExpiredDate(expiredDate);

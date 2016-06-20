@@ -14,7 +14,7 @@ public class RestService {
     }
 
     public String loginAdmin() {
-        UserWrapper userWrapper = new UserWrapper("admin", "admin@gmail.com", "admin", "admin", "admin");
+        UserWrapper userWrapper = new UserWrapper("admin", "admin@gmail.com", "admin");
         TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.LOGIN).body(userWrapper).clazz(TokenWrapper.class)
                 .post().build();
         return token.getToken();

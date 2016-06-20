@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import business.api.MailService;
+import business.api.exceptions.AlreadyExistUserFieldException;
 import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
 import business.wrapper.UserState;
@@ -44,16 +45,14 @@ public class UserController {
     public boolean registration(UserWrapper userWrapper) {
         if (null == userDao.findByUsernameOrEmail(userWrapper.getUsername())
                 && null == userDao.findByUsernameOrEmail(userWrapper.getEmail())) {
-            User user = new User(userWrapper.getUsername(), userWrapper.getEmail(), userWrapper.getPassword(), userWrapper.getConfirmedPassword(), userWrapper.getName(), userWrapper.getAddress(),userWrapper.getImgName());
+            User user = new User(userWrapper.getUsername(), userWrapper.getSurname(),
+            		userWrapper.getEmail(), userWrapper.getPhone(), userWrapper.getAssociation(),
+            		userWrapper.getAddress(), userWrapper.getState(), userWrapper.getTown(),
+            		userWrapper.getPostalCode(),userWrapper.getPassword());
             userDao.save(user);
-            if (userWrapper.getAddress() == null) {
-                authorizationDao.save(new Authorization(user, Role.ADOPTER));
-            }
-            else {
-                authorizationDao.save(new Authorization(user, Role.ASSOCIATION));
-            }
+            authorizationDao.save(new Authorization(user, Role.ASSOCIATION));
             
-            mailService.sendMail("pfm.animals@gmail.com", user.getEmail(), "Bienvenido", "Bienvenido, " + user.getName() + ", has sido registrado en nuestro portal.");
+            mailService.sendMail("pfm.animals@gmail.com", user.getEmail(), "Bienvenido", "Bienvenido, " + user.getUsername() + ", has sido registrado en nuestro portal.");
             
             return true;
         } else {
@@ -95,5 +94,22 @@ public class UserController {
         
         return associations;
     }
+
+	public void modifyAssocitaion(UserWrapper userWrapper, int id) throws AlreadyExistUserFieldException {
+		User association = userDao.findUserById(id);
+		if (association != null) {			
+			if (userDao.findByUsernameOrEmail(userWrapper.getUsername()) != null) {
+				throw new AlreadyExistUserFieldException("Ya existe ese nombre de usuario");
+			}			
+			if (userDao.findByUsernameOrEmail(userWrapper.getEmail()) != null) {
+				throw new AlreadyExistUserFieldException("Ya existe ese email");
+			}				    
+			userDao.modifyAssociation(association, userWrapper.getUsername(), userWrapper.getSurname(), 
+					userWrapper.getEmail(), userWrapper.getPhone(),	userWrapper.getAssociation(), 
+					userWrapper.getAddress(), userWrapper.getState(), userWrapper.getTown(), 
+					userWrapper.getPostalCode(), userWrapper.getPassword());
+		}
+		
+	}
 }
 

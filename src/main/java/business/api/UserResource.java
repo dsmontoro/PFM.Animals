@@ -31,8 +31,6 @@ public class UserResource {
         validateField(userWrapper.getUsername(), "username");
         validateField(userWrapper.getEmail(), "email");
         validateField(userWrapper.getPassword(), "password");
-        validateField(userWrapper.getConfirmedPassword(), "confirmedPassword");
-        validateField(userWrapper.getName(), "name");
         if (!this.userController.registration(userWrapper)) {
             throw new AlreadyExistUserFieldException();
         }

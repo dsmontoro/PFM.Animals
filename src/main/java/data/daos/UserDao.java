@@ -23,7 +23,11 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
     User findUserById(int id);
 
-    @Query("select user from User user where user.address != null and user.name like CONCAT('%',?1,'%')")
+    @Query("select user from User user where user.address != null and user.association like CONCAT('%',?1,'%')")
     public List<User> searchAssociationsByName(String name);
+    
+    @Query("update User u set u.username=?2, u.surname=?3, u.email=?4, u.phone=?5, u.association=?6, u.address=?7, u.state=?8, u.town=?9, u.postalCode=?10, u.password=?11 where u=?1")
+	public void modifyAssociation(User user, String username, String surname, String email, String phone,
+			String association, String address, String state, String town, String postalCode, String password);
 
 }

@@ -26,10 +26,6 @@ public class Populate {
 
     private String adminPassword;
     
-    private String adminConfirmedPassword;
-    
-    private String adminName;
-
     @Autowired
     private Environment environment;
 
@@ -44,15 +40,13 @@ public class Populate {
         adminUsername = environment.getProperty("admin.username");
         adminEmail = environment.getProperty("admin.email");
         adminPassword = environment.getProperty("admin.password");
-        adminConfirmedPassword = environment.getProperty("admin.password");
-        adminName = environment.getProperty("admin.name");
         createDefaultAdmin();
     }
 
     public void createDefaultAdmin() {
         User adminSaved = userDao.findByUsernameOrEmail(adminUsername);
         if (adminSaved == null) {
-            User admin = new User(adminUsername, adminEmail, adminPassword, adminConfirmedPassword, adminName);
+            User admin = new User(adminUsername, adminEmail, adminPassword);
             userDao.save(admin);
             authorizationDao.save(new Authorization(admin, Role.ADMIN));
         }
