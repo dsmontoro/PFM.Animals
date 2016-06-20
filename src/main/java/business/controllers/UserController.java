@@ -82,8 +82,7 @@ public class UserController {
     }
     
     public AssociationDetails showAssociation(int id) {
-        User association = userDao.findUserById(id);        
-        
+        User association = userDao.findUserById(id);         
         return (new AssociationDetails(association));        
     }
     
