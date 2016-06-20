@@ -15,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import business.api.Uris;
 import business.wrapper.AssociationState;
+import business.wrapper.TokenWrapper;
 import business.wrapper.UserWrapper;
 import business.wrapper.UserWrapperBuilder;
 import data.entities.User;
@@ -27,8 +28,7 @@ public class UserResourceFunctionalTesting {
     public void deleteBefore() {
         new RestService().deleteAll();
     }
-    
-    
+        
     @Test
     public void testCreate() {
         for (int i = 0; i < 4; i++) {
@@ -73,9 +73,13 @@ public class UserResourceFunctionalTesting {
     
     @Test
     public void testModifyAssociation() {
-    	UserWrapper user = new UserWrapperBuilder(1).build();
+    	
+        UserWrapper user = new UserWrapperBuilder(1).build();
     	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).body(user).post().build();
    	
+    	TokenWrapper token = (TokenWrapper) new RestBuilder<TokenWrapper>(RestService.URL).path(Uris.LOGIN).body(user)
+                .clazz(TokenWrapper.class).post().build();
+    	
     	List<AssociationState> associations = Arrays.asList(new RestBuilder<AssociationState[]>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS)
     			.clazz(AssociationState[].class).get().build());
     	
@@ -83,8 +87,33 @@ public class UserResourceFunctionalTesting {
     	
     	user.setAddress("address");
     	
-    	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).pathId(associationState.getId()).body(user).put().build();
+    	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).pathId(associationState.getId()).body(user).basicAuth(token.getToken(), "").put().build();
     	
+    }
+    
+    @Test
+    public void testModifyAssociationNotAuthorized() {
+        
+        UserWrapper user = new UserWrapperBuilder(1).build();
+        new RestBuilder<Object>(RestService.URL).path(Uris.USERS).body(user).post().build();
+        
+        List<AssociationState> associations = Arrays.asList(new RestBuilder<AssociationState[]>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS)
+                .clazz(AssociationState[].class).get().build());
+        
+        AssociationState associationState= associations.get(0);
+        
+        user.setAddress("address");
+        
+        String token = new RestService().loginAdmin();
+               
+        try {
+            new RestBuilder<Object>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).pathId(associationState.getId()).body(user).basicAuth(token, "").put().build();
+            fail();
+        } catch (HttpClientErrorException httpError) {
+            LogManager.getLogger(this.getClass()).info(
+                    "testModifyAssociationNotAuthorized (" + httpError.getMessage() + "):\n    " + httpError.getResponseBodyAsString());
+        }
+        
     }
     
 
