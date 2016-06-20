@@ -75,9 +75,7 @@ public class UserResourceFunctionalTesting {
     public void testModifyAssociation() {
     	UserWrapper user = new UserWrapperBuilder(1).build();
     	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).body(user).post().build();
-    	/*TokenWrapper tokenWrapper = (TokenWrapper) new RestBuilder<TokenWrapper>(RestService.URL).path(Uris.LOGIN).body(new UserWrapperBuilder().username("u1").password("u1").build())
-        		.clazz(TokenWrapper.class).post().build();*/    	
-    	
+   	
     	List<AssociationState> associations = Arrays.asList(new RestBuilder<AssociationState[]>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS)
     			.clazz(AssociationState[].class).get().build());
     	
@@ -85,7 +83,7 @@ public class UserResourceFunctionalTesting {
     	
     	user.setAddress("address");
     	
-    	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).path(Uris.ID).pathId(associationState.getId()).body(user).put().build();
+    	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).pathId(associationState.getId()).body(user).put().build();
     	
     }
     

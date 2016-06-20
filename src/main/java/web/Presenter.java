@@ -3,13 +3,10 @@ package web;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
@@ -21,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,9 +97,8 @@ public class Presenter {
         if (!bindingResult.hasErrors())
 
         {
-            UserWrapper userWrapper = new UserWrapper(user.getUsername(), user.getEmail(), user.getPassword(), user.getConfirmedPassword(),
-                    user.getName());
-            if (!user.getPassword().equalsIgnoreCase(user.getConfirmedPassword())) {
+            UserWrapper userWrapper = new UserWrapper(user.getUsername(), user.getSurname(), user.getEmail(), user.getPhone(), user.getAssociation(), user.getAddress(), user.getState(), user.getTown(), user.getPostalCode(), user.getPassword());
+            if (!user.getPassword().equalsIgnoreCase(user.getPassword())) {
                 bindingResult.rejectValue("confirmedPassword", "error.user", "Las passwords no coinciden");
             } else if (userController.registration(userWrapper)) {
                 model.addAttribute("username", user.getUsername());

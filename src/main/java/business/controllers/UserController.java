@@ -98,16 +98,25 @@ public class UserController {
 	public void modifyAssocitaion(UserWrapper userWrapper, int id) throws AlreadyExistUserFieldException {
 		User association = userDao.findUserById(id);
 		if (association != null) {			
-			if (userDao.findByUsernameOrEmail(userWrapper.getUsername()) != null) {
+			if (userDao.findByUsernameOrEmail(userWrapper.getUsername()) != null && !association.getUsername().equalsIgnoreCase(userWrapper.getUsername())) {
 				throw new AlreadyExistUserFieldException("Ya existe ese nombre de usuario");
 			}			
-			if (userDao.findByUsernameOrEmail(userWrapper.getEmail()) != null) {
+			if (userDao.findByUsernameOrEmail(userWrapper.getEmail()) != null && !association.getEmail().equalsIgnoreCase(userWrapper.getEmail())) {
 				throw new AlreadyExistUserFieldException("Ya existe ese email");
-			}				    
-			userDao.modifyAssociation(association, userWrapper.getUsername(), userWrapper.getSurname(), 
-					userWrapper.getEmail(), userWrapper.getPhone(),	userWrapper.getAssociation(), 
-					userWrapper.getAddress(), userWrapper.getState(), userWrapper.getTown(), 
-					userWrapper.getPostalCode(), userWrapper.getPassword());
+			}
+			
+			association.setUsername(userWrapper.getUsername());
+			association.setSurname(userWrapper.getSurname());
+			association.setEmail(userWrapper.getEmail());
+			association.setPhone(userWrapper.getPhone());
+			association.setAssociation(userWrapper.getAssociation());
+			association.setAddress(userWrapper.getAddress());
+			association.setState(userWrapper.getState());
+			association.setTown(userWrapper.getTown());
+			association.setPostalCode(userWrapper.getPostalCode());
+			association.setPassword(userWrapper.getPassword());
+			
+			userDao.save(association);
 		}
 		
 	}
