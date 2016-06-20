@@ -8,13 +8,20 @@ import org.springframework.stereotype.Controller;
 
 import business.wrapper.AnimalWrapper;
 import data.daos.AnimalDao;
+import data.daos.AuthorizationDao;
+import data.daos.UserDao;
 import data.entities.Animal;
+import data.entities.Role;
 
 @Controller
 
 public class AnimalController {
 
 	private AnimalDao animalDao;
+	
+	private UserDao userDao;
+	
+	private AuthorizationDao authorizationDao;
 	
 	@Autowired
     public void setAnimalDao(AnimalDao animalDao) {
@@ -53,5 +60,13 @@ public class AnimalController {
 			animalDao.delete(id);
 			return true;
 		}
+	}
+	
+	public boolean existUser(String email){
+		return (userDao.findByUsernameOrEmail(email) != null);
+	}
+	
+	public boolean userHasRole(String email, Role role){
+		return (authorizationDao.findRoleByUser(userDao.findByUsernameOrEmail(email)).get(0) == role);
 	}
 }

@@ -8,6 +8,10 @@ public class AnimalWrapperBuilder {
 		animalWrapper = new AnimalWrapper("a" + suffix,"t" + suffix,"r" + suffix,suffix);
 	}
 	
+	public AnimalWrapperBuilder(){
+		this(0);
+	}
+	
 	public AnimalWrapperBuilder name(String name){
 		animalWrapper.setName(name);
 		return this;

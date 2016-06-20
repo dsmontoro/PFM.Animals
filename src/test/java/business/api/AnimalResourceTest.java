@@ -1,6 +1,8 @@
 package business.api;
 
 import org.junit.Before;
+import org.junit.Test;
+import org.springframework.security.access.event.PublicInvocationEvent;
 
 import business.controllers.AnimalController;
 
@@ -18,5 +20,8 @@ public class AnimalResourceTest {
     }
 	
 	
-	
+	@Test
+	public void testShowAnimals(){
+		
+	}
 }
