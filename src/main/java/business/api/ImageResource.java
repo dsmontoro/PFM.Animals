@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.servlet.ServletContext;
+import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,12 @@ public class ImageResource {
     @ResponseBody
     @RequestMapping(value = "/photo/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
     public byte[] testphoto(@PathVariable String id) throws IOException {
-        // TODO: Hay que pasar el nombre de la imagen como parametro
         InputStream in = servletContext.getResourceAsStream("/images/" + id + ".jpg");
         return IOUtils.toByteArray(in);
     }
             
     @RequestMapping(value = Uris.ASSOCIATIONS, method = RequestMethod.POST, headers = "content-type=multipart/*")
-    public void uploadImage(@RequestBody TokenWrapper tokenWrapper, @RequestParam(value = "image", required = false) MultipartFile image) {        
+    public void uploadImage(@Valid final TokenWrapper tokenWrapper, @RequestParam(value = "image", required = false) MultipartFile image) {        
         imageController.uploadImageAssociation(tokenWrapper, image);  
     }    
 }
