@@ -26,4 +26,6 @@ public class Uris {
     
     public static final String IMAGES = "/images";
 
+    public static final String ANIMALS = "/animals";
+
 }
