@@ -52,6 +52,8 @@ public class ImageController {
                 }
                 try {
                     saveImage(randomName, image);
+                    association.setImgName(randomName);
+                    userDao.save(association);
                 } catch (IOException e) {
                     throw new RuntimeException("Only JPG images are accepted");
                 }
