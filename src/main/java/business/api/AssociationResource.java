@@ -46,5 +46,10 @@ public class AssociationResource {
     public void modifyAssociation(@RequestBody UserWrapper userWrapper, @PathVariable int id) throws AlreadyExistUserFieldException {
     	userController.modifyAssocitaion(userWrapper, id);
     }
+    
+    @RequestMapping(value = Uris.ID, method = RequestMethod.DELETE)
+    public void deleteAssociation(@PathVariable int id) {
+    	userController.deleteAssociation(id);
+    }
 
 }

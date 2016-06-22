@@ -120,5 +120,12 @@ public class UserController {
 		}
 		
 	}
+
+	public void deleteAssociation(int id) {
+		User association = userDao.findUserById(id);
+		if (association != null) {
+			userDao.delete(association);
+		}		
+	}
 }
 
