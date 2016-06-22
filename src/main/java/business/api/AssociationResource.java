@@ -37,6 +37,11 @@ public class AssociationResource {
         return userController.showAssociation(id);
     }
     
+    @RequestMapping(value = Uris.DATA, method = RequestMethod.GET)
+    public AssociationDetails showAssociation(@RequestParam String tokenValue) {
+        return userController.showAssociationData(tokenValue);
+    }
+    
     @RequestMapping(value = Uris.QUERY + Uris.NAME, method = RequestMethod.GET)
     public List<AssociationState> searchAssociations(@PathVariable String name) {
         return userController.searchAssociations(name);

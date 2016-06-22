@@ -85,6 +85,12 @@ public class UserController {
         return (new AssociationDetails(association));        
     }
     
+    public AssociationDetails showAssociationData(String tokenValue) {
+        User association = userDao.findByTokenValue(tokenValue);
+        assert association != null;
+        return (new AssociationDetails(association));
+    }
+    
     public List<AssociationState> searchAssociations(String name) {
         List<AssociationState> associations = new ArrayList<>();
         for (User association : userDao.searchAssociationsByName(name)) {
