@@ -23,17 +23,17 @@ public class AnimalResource {
 	
 	private AnimalController animalController;
 	
-	private AnimalValidator animalValidator;
+	//private AnimalValidator animalValidator;
 
     @Autowired
     public void setAnimalController(AnimalController animalController) {
         this.animalController = animalController;
     }
     
-    @Autowired
+    /*@Autowired
     public void setAnimalValidator(AnimalValidator animalValidator) {
 		this.animalValidator = animalValidator;
-	}
+	}*/
     
     @RequestMapping(method = RequestMethod.GET)
     public List<Animal> showAnimals() {
