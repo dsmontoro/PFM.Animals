@@ -2,6 +2,7 @@ package business.wrapper;
 
 import java.util.Calendar;
 
+import data.entities.Type;
 import data.entities.User;
 
 public class AnimalWrapperBuilder {
@@ -10,7 +11,7 @@ public class AnimalWrapperBuilder {
 	
 	public AnimalWrapperBuilder(int suffix){
 		User association = new User();
-		animalWrapper = new AnimalWrapper("name" + suffix, "type" + suffix, "breed" + suffix, association, Calendar.getInstance(), Calendar.getInstance(), "description" + suffix);
+		animalWrapper = new AnimalWrapper("name" + suffix, Type.DOG, "breed" + suffix, association, Calendar.getInstance(), Calendar.getInstance(), "description" + suffix);
 	}
 	
 	public AnimalWrapperBuilder(){
@@ -22,7 +23,7 @@ public class AnimalWrapperBuilder {
 		return this;
 	}
 	
-	public AnimalWrapperBuilder type(String type){
+	public AnimalWrapperBuilder type(Type type){
 		animalWrapper.setType(type);
 		return this;
 	}

@@ -43,7 +43,6 @@ public class AnimalResource {
     public void registration(AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	
             	   	
     	validateField(animalWrapper.getName(), "name");
-        validateField(animalWrapper.getType(), "type");
         validateField(animalWrapper.getBreed(), "breed");
         if (!this.animalController.registration(animalWrapper, images)) {
             throw new InvalidAnimalUserEception();

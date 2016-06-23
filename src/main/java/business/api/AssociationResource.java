@@ -47,7 +47,7 @@ public class AssociationResource {
         return userController.searchAssociations(name);
     }
     
-    @RequestMapping(value = Uris.ID, method = RequestMethod.PUT)
+    @RequestMapping(value = Uris.ID, method = RequestMethod.POST)
     public void modifyAssociation(@RequestBody UserWrapper userWrapper, @PathVariable int id) throws AlreadyExistUserFieldException {
     	userController.modifyAssocitaion(userWrapper, id);
     }
