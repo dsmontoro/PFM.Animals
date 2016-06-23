@@ -1,45 +1,44 @@
 package business.wrapper;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.List;
+
+import data.entities.Photo;
+import data.entities.User;
 
 public class AnimalWrapper {
 
 	private String name;
 	
-	private String tipo;
+	private String type;
 	
-	private String raza;
+	private String breed;
 	
-	private int idUser;
+	private User association;
 	
-    private Date publishDate;
+	private Calendar birthdate;
 	
-    private String age;
+    private Calendar publishDate;
 	
     private String description;
+    
+    private List<Photo> images;
     
     public AnimalWrapper(){
     	
     }
     
-    public AnimalWrapper(String name,String tipo,String raza,int idUser){
+    public AnimalWrapper(String name, String type, String breed, User association, Calendar birthdate, Calendar publishDate, String description, List<Photo> images){
 		this.name = name;
-		this.tipo = tipo;
-		this.raza = raza;
-		this.idUser = idUser;
-		this.publishDate = new Date();
-	}
-    
-    public AnimalWrapper(String name,String tipo,String raza,int idUser,String age,String description){
-		this.name = name;
-		this.tipo = tipo;
-		this.raza = raza;
-		this.idUser = idUser;
-		this.publishDate = new Date();
-		this.age = age;
+		this.type = type;
+		this.breed = breed;
+		this.association = association;
+		this.birthdate = birthdate;
+		this.publishDate = publishDate;
 		this.description = description;
+		this.images = images;
 	}
-
+	    
 	public String getName() {
 		return name;
 	}
@@ -48,44 +47,44 @@ public class AnimalWrapper {
 		this.name = name;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getType() {
+		return type;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getRaza() {
-		return raza;
+	public String getBreed() {
+		return breed;
 	}
 
-	public void setRaza(String raza) {
-		this.raza = raza;
+	public void setBreed(String breed) {
+		this.breed = breed;
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public User getAssociation() {
+		return association;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setAssociation(User association) {
+		this.association = association;
 	}
 
-	public Date getPublishDate() {
+	public Calendar getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Calendar birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public Calendar getPublishDate() {
 		return publishDate;
 	}
 
-	public void setPublishDate(Date publishDate) {
+	public void setPublishDate(Calendar publishDate) {
 		this.publishDate = publishDate;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
 	}
 
 	public String getDescription() {
@@ -95,9 +94,17 @@ public class AnimalWrapper {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-    
+
+	public List<Photo> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Photo> images) {
+		this.images = images;
+	}
+
 	@Override
 	public String toString() {
-	        return "AnimalWrapper [name=" + name + ", tipo=" + tipo + ", raza=" + raza + ", idUser=" + idUser + ", publishDate=" + publishDate + ", age=" + age +  ", description=" + description +  "]";
+	        return "AnimalWrapper [name=" + name + ", type=" + type + ", breed=" + breed + ", association=" + association + ", publishDate=" + publishDate + ", birthdate=" + birthdate +  ", description=" + description +  "]";
 	}
 }

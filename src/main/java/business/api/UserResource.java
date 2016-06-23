@@ -34,26 +34,7 @@ public class UserResource {
         if (!this.userController.registration(userWrapper)) {
             throw new AlreadyExistUserFieldException();
         }
-    }
-
-    // SUBIDA DE MULTIPLE FICHEROS !CUIDADO!
-    /*
-     * @RequestMapping(method = RequestMethod.POST, headers = "content-type=multipart/*") public void registrationMultiFile(@Valid final
-     * UserWrapper userWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidUserFieldException,
-     * AlreadyExistUserFieldException {
-     * 
-     * String randomName = "";
-     * 
-     * if (images != null && images.length > 0) { for (int i = 0; i < images.length; i++) { MultipartFile image = images[i]; if (image !=
-     * null && !image.isEmpty()) { try { validateImage(image); } catch (RuntimeException re) { throw new RuntimeException(re.toString()); }
-     * try { randomName = randomIdentifier(); saveImage(randomName, image); } catch (IOException e) { throw new RuntimeException(
-     * "Only JPG images are accepted"); } } } }
-     * 
-     * validateField(userWrapper.getUsername(), "username"); validateField(userWrapper.getEmail(), "email");
-     * validateField(userWrapper.getPassword(), "password"); validateField(userWrapper.getConfirmedPassword(), "confirmedPassword");
-     * validateField(userWrapper.getName(), "name"); userWrapper.setImgName(randomName); if (!this.userController.registration(userWrapper))
-     * { throw new AlreadyExistUserFieldException(); } }
-     */
+    }    
 
     @RequestMapping(method = RequestMethod.GET)
     public List<UserState> showUsers() {
