@@ -12,14 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
+import business.wrapper.AnimalWrapper;
 import business.wrapper.TokenWrapper;
+import data.daos.AnimalDao;
+import data.daos.PhotoDao;
 import data.daos.UserDao;
+import data.entities.Animal;
+import data.entities.Photo;
 import data.entities.User;
 
 @Controller
 public class ImageController {
     
     private UserDao userDao;
+    
+    private AnimalDao animalDao;
+    
+    private PhotoDao photoDao;
     
     @Autowired
     ServletContext servletContext;
@@ -28,6 +37,16 @@ public class ImageController {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
+    
+    @Autowired
+    public void setAnimalDao(AnimalDao animalDao) {
+        this.animalDao = animalDao;
+    }
+    
+    @Autowired
+    public void setPhotoDao(PhotoDao photoDao) {
+        this.photoDao = photoDao;
+    } 
 
     // class variable
     final String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345674890";
@@ -87,6 +106,36 @@ public class ImageController {
         } catch (IOException e) {
             throw e;
         }
+    }
+
+    public void uploadImagesAnimal(AnimalWrapper animalWrapper, MultipartFile[] images) {
+        User association = userDao.findUserById(animalWrapper.getIdAssociation());
+       
+        Animal animal = new Animal(animalWrapper.getName(), animalWrapper.getType() , animalWrapper.getBreed() , association , animalWrapper.getBirthdate() , animalWrapper.getDescription());
+        animalDao.save(animal);
+                 
+        String randomName = "";
+        if (images != null && images.length > 0) { 
+            for (int i = 0; i < images.length; i++) { 
+                MultipartFile image = images[i]; 
+                if (image != null && !image.isEmpty()) {
+                    try { 
+                        validateImage(image); 
+                    }
+                    catch (RuntimeException re) {
+                        throw new RuntimeException(re.toString());
+                    }
+                    try { 
+                        randomName = randomIdentifier(); 
+                        saveImage(randomName, image);
+                        Photo photo = new Photo(randomName, animal);
+                        photoDao.save(photo);
+                    } catch (IOException e) { 
+                        throw new RuntimeException("Only JPG images are accepted");
+                    }
+                }
+            }
+        }              
     }
 
 }

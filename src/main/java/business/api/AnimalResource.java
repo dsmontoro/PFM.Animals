@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,18 +34,11 @@ public class AnimalResource {
         return animalController.showAnimals();
     }
     
-    private void validateField(String field, String msg) throws InvalidAnimalUserEception {
-        if (field == null || field.isEmpty()) {
-            throw new InvalidAnimalUserEception(msg);
-        }
-    }
-    
-    @RequestMapping(value = Uris.ID, method = RequestMethod.POST, headers = "content-type=multipart/*")
-    public void registration(@PathVariable int id,AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	      	   	
+    @RequestMapping(value = Uris.ASSOCIATIONS + Uris.ID, method = RequestMethod.POST)
+    public void registration(@PathVariable int id, @RequestBody AnimalWrapper animalWrapper) throws InvalidAnimalUserEception{    	      	   	
     	validateField(animalWrapper.getName(), "name");
-        validateField(animalWrapper.getBreed(), "breed");
-        animalWrapper.setAssociation(id);        
-        if (!this.animalController.registration(animalWrapper, images)) {
+        validateField(animalWrapper.getBreed(), "breed");                       
+        if (!this.animalController.registration(id, animalWrapper)) {
             throw new InvalidAnimalUserEception();
         }
     }
@@ -55,5 +49,11 @@ public class AnimalResource {
     	if(!animalController.deleteAnimal(id)){
     		throw new NotFoundAnimalException();
     	}
+    }
+    
+    private void validateField(String field, String msg) throws InvalidAnimalUserEception {
+        if (field == null || field.isEmpty()) {
+            throw new InvalidAnimalUserEception(msg);
+        }
     }
 }
