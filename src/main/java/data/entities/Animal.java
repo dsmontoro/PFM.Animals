@@ -1,6 +1,7 @@
 package data.entities;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Animal {
     private Calendar publishDate;
 	
 	@Column(nullable = true)
-    private Calendar birthdate;
+    private Date birthdate;
 	
 	@Column(nullable = true)
     private String description;
@@ -42,7 +43,7 @@ public class Animal {
 	public Animal() {
     }
 	
-	public Animal(String name, Type type, String breed, User association, Calendar birthdate, String description){
+	public Animal(String name, Type type, String breed, User association, Date birthdate, String description){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
@@ -100,11 +101,11 @@ public class Animal {
 		this.publishDate = publishDate;
 	}
 
-	public Calendar getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Calendar birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 

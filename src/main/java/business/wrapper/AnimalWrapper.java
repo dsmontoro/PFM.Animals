@@ -1,6 +1,7 @@
 package business.wrapper;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import data.entities.Type;
 import data.entities.User;
@@ -13,9 +14,9 @@ public class AnimalWrapper {
 	
 	private String breed;
 	
-	private User association;
+	private int idAssociation;
 	
-	private Calendar birthdate;
+	private Date birthdate;
 	
     private Calendar publishDate;
 	
@@ -25,11 +26,11 @@ public class AnimalWrapper {
     	
     }
     
-    public AnimalWrapper(String name, Type type, String breed, User association, Calendar birthdate, Calendar publishDate, String description){
+    public AnimalWrapper(String name, Type type, String breed, int idAssociation, Date birthdate, Calendar publishDate, String description){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
-		this.association = association;
+		this.idAssociation = idAssociation;
 		this.birthdate = birthdate;
 		this.publishDate = publishDate;
 		this.description = description;
@@ -59,19 +60,19 @@ public class AnimalWrapper {
 		this.breed = breed;
 	}
 
-	public User getAssociation() {
-		return association;
+	public int getIdAssociation() {
+		return idAssociation;
 	}
 
-	public void setAssociation(User association) {
-		this.association = association;
+	public void setAssociation(int idAssociation) {
+		this.idAssociation = idAssociation;
 	}
 
-	public Calendar getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Calendar birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -93,6 +94,6 @@ public class AnimalWrapper {
 
 	@Override
 	public String toString() {
-	        return "AnimalWrapper [name=" + name + ", type=" + type + ", breed=" + breed + ", association=" + association + ", publishDate=" + publishDate + ", birthdate=" + birthdate +  ", description=" + description +  "]";
+	        return "AnimalWrapper [name=" + name + ", type=" + type + ", breed=" + breed + ", idAssociation=" + idAssociation + ", publishDate=" + publishDate + ", birthdate=" + birthdate +  ", description=" + description +  "]";
 	}
 }
