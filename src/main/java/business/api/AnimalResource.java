@@ -39,11 +39,11 @@ public class AnimalResource {
         }
     }
     
-    @RequestMapping(method = RequestMethod.POST, headers = "content-type=multipart/*")
-    public void registration(AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	      	   	
+    @RequestMapping(value = Uris.ID, method = RequestMethod.POST, headers = "content-type=multipart/*")
+    public void registration(@PathVariable int id,AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	      	   	
     	validateField(animalWrapper.getName(), "name");
         validateField(animalWrapper.getBreed(), "breed");
-                
+        animalWrapper.setAssociation(id);        
         if (!this.animalController.registration(animalWrapper, images)) {
             throw new InvalidAnimalUserEception();
         }
