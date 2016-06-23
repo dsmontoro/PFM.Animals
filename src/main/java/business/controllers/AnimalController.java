@@ -143,4 +143,11 @@ public class AnimalController {
 			return true;
 		}
 	}
+	
+	public boolean modifyAnimal(int id) {
+	    if(!existsAnimal(id)) {
+	        return false;
+	    }
+	    return true;
+	}
 }

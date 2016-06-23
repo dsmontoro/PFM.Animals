@@ -56,4 +56,11 @@ public class AnimalResource {
     		throw new NotFoundAnimalException();
     	}
     }
+    
+    @RequestMapping(value = Uris.ID, method = RequestMethod.PUT)
+    public void modify(@PathVariable int id) throws NotFoundAnimalException {
+        if(!animalController.modifyAnimal(id)) {
+            throw new NotFoundAnimalException();
+        }
+    }
 }
