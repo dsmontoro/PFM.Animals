@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import business.controllers.ImageController;
+import business.wrapper.AnimalWrapper;
 import business.wrapper.TokenWrapper;
 
 @RestController
@@ -43,5 +44,10 @@ public class ImageResource {
     @RequestMapping(value = Uris.ASSOCIATIONS, method = RequestMethod.POST, headers = "content-type=multipart/*")
     public void uploadImage(@Valid final TokenWrapper tokenWrapper, @RequestParam(value = "image", required = false) MultipartFile image) {        
         imageController.uploadImageAssociation(tokenWrapper, image);  
-    }    
+    }
+    
+    @RequestMapping(value = Uris.ANIMALS, method = RequestMethod.POST, headers = "content-type=multipart/*")
+    public void uploadImage(@Valid final AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) {        
+        imageController.uploadImagesAnimal(animalWrapper, images);  
+    }
 }

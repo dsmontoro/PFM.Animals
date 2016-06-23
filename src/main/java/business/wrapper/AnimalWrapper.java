@@ -15,8 +15,7 @@ public class AnimalWrapper {
 	
 	private int idAssociation;
 	
-	private Date birthdate;
-	
+	private Date birthdate;	
 	
     private String description;
         
@@ -24,7 +23,7 @@ public class AnimalWrapper {
     	
     }
     
-    public AnimalWrapper(String name, Type type, String breed, int idAssociation, Date birthdate,String description){
+    public AnimalWrapper(String name, Type type, String breed, int idAssociation, Date birthdate, String description){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
@@ -72,8 +71,6 @@ public class AnimalWrapper {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
-
-
 
 	public String getDescription() {
 		return description;

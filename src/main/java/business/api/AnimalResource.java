@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,11 +41,11 @@ public class AnimalResource {
     }
     
     @RequestMapping(method = RequestMethod.POST, headers = "content-type=multipart/*")
-    public void registration(AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	      	   	
+    public void registration(@RequestBody AnimalWrapper animalWrapper) throws InvalidAnimalUserEception{    	      	   	
     	validateField(animalWrapper.getName(), "name");
         validateField(animalWrapper.getBreed(), "breed");
                 
-        if (!this.animalController.registration(animalWrapper, images)) {
+        if (!this.animalController.registration(animalWrapper)) {
             throw new InvalidAnimalUserEception();
         }
     }
