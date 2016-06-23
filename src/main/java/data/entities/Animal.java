@@ -1,11 +1,14 @@
 package data.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Animal {
@@ -17,19 +20,20 @@ public class Animal {
     private String name;
 	
 	@Column(nullable = false)
-    private String tipo;
+    private String type;
 	
 	@Column(nullable = false)
-    private String raza;
+    private String breed;
 	
-	@Column(unique = false, nullable = false)
-    private int idUser;
+	@ManyToOne
+    @JoinColumn(nullable = false)
+    private User association;
 	
 	@Column(nullable = false)
-    private Date publishDate;
+    private Calendar publishDate;
 	
 	@Column(nullable = true)
-    private String age;
+    private Calendar birthdate;
 	
 	@Column(nullable = true)
     private String description;
@@ -37,24 +41,16 @@ public class Animal {
 	public Animal() {
     }
 	
-	public Animal(String name,String tipo,String raza,int idUser){
+	public Animal(String name, String type, String breed, User association, Calendar birthdate, String description){
 		this.name = name;
-		this.tipo = tipo;
-		this.raza = raza;
-		this.idUser = idUser;
-		this.publishDate = new java.util.Date();
-	}
-
-	public Animal(String name,String tipo,String raza,int idUser,String age,String description){
-		this.name = name;
-		this.tipo = tipo;
-		this.raza = raza;
-		this.idUser = idUser;
-		this.publishDate = new java.util.Date();
-		this.age = age;
+		this.type = type;
+		this.breed = breed;
+		this.association = association;
+		this.publishDate = Calendar.getInstance();
+		this.birthdate = birthdate;
 		this.description = description;
 	}
-	
+			
 	public int getId() {
 		return id;
 	}
@@ -71,44 +67,44 @@ public class Animal {
 		this.name = name;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getType() {
+		return type;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getRaza() {
-		return raza;
+	public String getBreed() {
+		return breed;
 	}
 
-	public void setRaza(String raza) {
-		this.raza = raza;
+	public void setBreed(String breed) {
+		this.breed = breed;
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public User getAssociation() {
+		return association;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setAssociation(User association) {
+		this.association = association;
 	}
 
-	public Date getPublishDate() {
+	public Calendar getPublishDate() {
 		return publishDate;
 	}
 
-	public void setPublishDate(Date publishDate) {
+	public void setPublishDate(Calendar publishDate) {
 		this.publishDate = publishDate;
 	}
 
-	public String getAge() {
-		return age;
+	public Calendar getBirthdate() {
+		return birthdate;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setBirthdate(Calendar birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public String getDescription() {
@@ -120,7 +116,26 @@ public class Animal {
 	}
 	
 	@Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        return id == ((Animal) obj).id;
+    }
+
+	@Override
 	public String toString() {
-	        return "Animal [id=" + id + ", name=" + name + ", tipo=" + tipo + ", raza=" + raza + ", idUser=" + idUser + ", publishDate=" + publishDate + ", age=" + age +  ", description=" + description +  "]";
+	        return "Animal [id=" + id + ", name=" + name + ", type=" + type + ", breed=" + breed + ", association=" + association + ", publishDate=" + publishDate + ", birthdate=" + birthdate +  ", description=" + description +  "]";
 	}
 }

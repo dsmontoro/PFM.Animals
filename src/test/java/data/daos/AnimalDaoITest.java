@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import config.PersistenceConfig;
 import config.TestsPersistenceConfig;
 import data.entities.Animal;
+import data.entities.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {PersistenceConfig.class, TestsPersistenceConfig.class})
@@ -31,29 +32,30 @@ public class AnimalDaoITest {
 	
 	@Test
     public void testFindByAnimalId() {
-        Animal a1 = (Animal) daosService.getMap().get("a1");
+        Animal a1 = (Animal) daosService.getMap().get("name1");
         assertEquals(a1.getId(), animalDao.findByAnimalId(a1.getId()).getId());
         assertNull(animalDao.findByAnimalId(0));
     }
 	
 	@Test
 	public void testFindByRaza(){
-		assertEquals(1, animalDao.findByRaza("r1").size());
+		assertEquals(1, animalDao.findByRaza("breed1").size());
 	}
 	
 	@Test
 	public void testFindByTipo(){
-		assertEquals(1, animalDao.findByTipo("t1").size());
+		assertEquals(1, animalDao.findByTipo("type1").size());
 	}
 	
 	@Test
 	public void testFindByTipoAndRaza(){
-		assertEquals(1, animalDao.findByTipoAndRaza("t2","r2").size());
-		assertEquals(0, animalDao.findByTipoAndRaza("t3","r2").size());
+		assertEquals(1, animalDao.findByTipoAndRaza("type2","breed2").size());
+		assertEquals(0, animalDao.findByTipoAndRaza("type3","breed2").size());
 	}
 	
 	@Test
-	public void testFindByUserId(){
-		assertEquals(1, animalDao.findByUser(1).size());
+	public void testFindByUser(){
+		User association = (User) daosService.getMap().get("a4");
+		assertEquals(4, animalDao.findByAssociation(association).size());
 	}
 }

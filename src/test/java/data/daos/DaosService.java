@@ -1,6 +1,7 @@
 package data.daos;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,7 @@ public class DaosService {
         for (Token token : this.createTokens(associations)) {
             map.put("t" + token.getUser().getUsername(), token);
         }
+        
         for (Animal animal : animals) {
             map.put(animal.getName(), animal);
         }
@@ -77,9 +79,12 @@ public class DaosService {
     }
     
     public Animal[] createAnimals(int initial,int size){
+    	User association = new User("a4","s4", "a4@gmail.com", "000", "as4", "address4", "state4", "town4", "CP4", "p4");
+    	map.put(association.getUsername(), association);
+    	userDao.save(association);
     	Animal[] animals = new Animal[size];
     	for (int i = 0; i < size; i++) {
-            animals[i] = new Animal("a" + (i + initial), "t" + (i + initial),"r" + (i + initial), (i + initial));
+    		animals[i] = new Animal("name" + (i + initial), "type" + (i + initial),"breed" + (i + initial), association, Calendar.getInstance(), "description" + (i + initial));
             animalDao.save(animals[i]);
         }
     	return animals;
