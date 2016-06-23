@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import business.api.exceptions.InvalidAnimalUserEception;
+import business.api.exceptions.InvalidTypeException;
 import business.api.exceptions.NotFoundAnimalException;
 import business.controllers.AnimalController;
 import business.wrapper.AnimalWrapper;
 import data.entities.Animal;
+import data.entities.Type;
 
 @RestController
 @RequestMapping(Uris.SERVLET_MAP + Uris.ANIMALS)
@@ -27,11 +27,6 @@ public class AnimalResource {
     @Autowired
     public void setAnimalController(AnimalController animalController) {
         this.animalController = animalController;
-    }
-       
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Animal> showAnimals() {
-        return animalController.showAnimals();
     }
     
     @RequestMapping(value = Uris.ASSOCIATIONS + Uris.ID, method = RequestMethod.POST)
@@ -51,9 +46,33 @@ public class AnimalResource {
     	}
     }
     
+    @RequestMapping(value = Uris.ANIMALS + Uris.ID, method = RequestMethod.GET)
+    public List<Animal> showAnimals(){
+    	return animalController.showAnimals();
+    } 
+    
+    @RequestMapping(value = Uris.ANIMALS + Uris.ID, method = RequestMethod.GET)
+    public List<Animal> showAnimals(@PathVariable Type type) throws InvalidTypeException{
+    	if( validateType(type)){
+    		return animalController.showAnimals(type);
+    	}
+    	else{
+    		throw new InvalidTypeException();
+    	}
+    } 
+    
     private void validateField(String field, String msg) throws InvalidAnimalUserEception {
         if (field == null || field.isEmpty()) {
             throw new InvalidAnimalUserEception(msg);
         }
+    }
+    
+    private boolean validateType(Type type){
+    	boolean equal = false;
+    	for (Type tp : Type.values())
+    		if(type == tp)
+    			equal = true;
+    	
+    	return equal;
     }
 }

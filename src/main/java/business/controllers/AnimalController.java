@@ -15,6 +15,7 @@ import data.daos.AnimalDao;
 import data.daos.PhotoDao;
 import data.daos.UserDao;
 import data.entities.Animal;
+import data.entities.Type;
 import data.entities.User;
 
 @Controller
@@ -56,6 +57,14 @@ public class AnimalController {
 	public List<Animal> showAnimals() {
         List<Animal> animalList = new ArrayList<>();
         for (Animal animal : animalDao.findAll()) {
+            animalList.add(animal);
+        }
+        return animalList;
+    }
+	
+	public List<Animal> showAnimals(Type type) {
+        List<Animal> animalList = new ArrayList<>();
+        for (Animal animal : animalDao.findByType(type)) {
             animalList.add(animal);
         }
         return animalList;
