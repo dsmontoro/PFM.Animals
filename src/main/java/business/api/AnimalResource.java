@@ -40,10 +40,10 @@ public class AnimalResource {
     }
     
     @RequestMapping(method = RequestMethod.POST, headers = "content-type=multipart/*")
-    public void registration(AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	
-            	   	
+    public void registration(AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	      	   	
     	validateField(animalWrapper.getName(), "name");
         validateField(animalWrapper.getBreed(), "breed");
+                
         if (!this.animalController.registration(animalWrapper, images)) {
             throw new InvalidAnimalUserEception();
         }

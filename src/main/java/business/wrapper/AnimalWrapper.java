@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import data.entities.Type;
-import data.entities.User;
 
 public class AnimalWrapper {
 
@@ -18,7 +17,6 @@ public class AnimalWrapper {
 	
 	private Date birthdate;
 	
-    private Calendar publishDate;
 	
     private String description;
         
@@ -26,13 +24,12 @@ public class AnimalWrapper {
     	
     }
     
-    public AnimalWrapper(String name, Type type, String breed, int idAssociation, Date birthdate, Calendar publishDate, String description){
+    public AnimalWrapper(String name, Type type, String breed, int idAssociation, Date birthdate,String description){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
 		this.idAssociation = idAssociation;
 		this.birthdate = birthdate;
-		this.publishDate = publishDate;
 		this.description = description;
 	}
 	    
@@ -76,13 +73,7 @@ public class AnimalWrapper {
 		this.birthdate = birthdate;
 	}
 
-	public Calendar getPublishDate() {
-		return publishDate;
-	}
 
-	public void setPublishDate(Calendar publishDate) {
-		this.publishDate = publishDate;
-	}
 
 	public String getDescription() {
 		return description;
@@ -92,8 +83,5 @@ public class AnimalWrapper {
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-	        return "AnimalWrapper [name=" + name + ", type=" + type + ", breed=" + breed + ", idAssociation=" + idAssociation + ", publishDate=" + publishDate + ", birthdate=" + birthdate +  ", description=" + description +  "]";
-	}
+	
 }

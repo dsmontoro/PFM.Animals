@@ -22,6 +22,8 @@ public interface UserDao extends JpaRepository<User, Integer> {
     public List<User> findAllAssociations();
 
     User findUserById(int id);
+    
+    User findUserById(String id);
 
     @Query("select user from User user where user.address != null and user.association like CONCAT('%',?1,'%')")
     public List<User> searchAssociationsByName(String name);
