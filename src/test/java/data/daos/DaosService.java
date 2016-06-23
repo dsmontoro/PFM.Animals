@@ -15,6 +15,7 @@ import data.entities.Animal;
 import data.entities.Authorization;
 import data.entities.Role;
 import data.entities.Token;
+import data.entities.Type;
 import data.entities.User;
 import data.services.DataService;
 
@@ -84,7 +85,7 @@ public class DaosService {
     	userDao.save(association);
     	Animal[] animals = new Animal[size];
     	for (int i = 0; i < size; i++) {
-    		animals[i] = new Animal("name" + (i + initial), "type" + (i + initial),"breed" + (i + initial), association, Calendar.getInstance(), "description" + (i + initial));
+    		animals[i] = new Animal("name" + (i + initial), Type.CAT, "breed" + (i + initial), association, Calendar.getInstance(), "description" + (i + initial));
             animalDao.save(animals[i]);
         }
     	return animals;
