@@ -1,10 +1,7 @@
 package business.wrapper;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
-import data.entities.Photo;
 import data.entities.User;
 
 public class AnimalWrapperBuilder {
@@ -13,8 +10,7 @@ public class AnimalWrapperBuilder {
 	
 	public AnimalWrapperBuilder(int suffix){
 		User association = new User();
-		List<Photo> images = new ArrayList<>();
-		animalWrapper = new AnimalWrapper("name" + suffix, "type" + suffix, "breed" + suffix, association, Calendar.getInstance(), Calendar.getInstance(), "description" + suffix, images);
+		animalWrapper = new AnimalWrapper("name" + suffix, "type" + suffix, "breed" + suffix, association, Calendar.getInstance(), Calendar.getInstance(), "description" + suffix);
 	}
 	
 	public AnimalWrapperBuilder(){
@@ -53,11 +49,6 @@ public class AnimalWrapperBuilder {
 	
 	public AnimalWrapperBuilder description(String description) {
 		animalWrapper.setDescription(description);
-		return this;
-	}
-	
-	public AnimalWrapperBuilder images(List<Photo> images) {
-		animalWrapper.setImages(images);
 		return this;
 	}
 	
