@@ -70,6 +70,14 @@ public class AnimalController {
         return animalList;
     }
 	
+	public List<Animal> showAnimals(String breed) {
+        List<Animal> animalList = new ArrayList<>();
+        for (Animal animal : animalDao.findByBreed(breed)) {
+            animalList.add(animal);
+        }
+        return animalList;
+    }
+	
 	public boolean registration(int id, AnimalWrapper animalWrapper) {
 	    User association = userDao.findUserById(id);
         if (association != null) {

@@ -61,6 +61,11 @@ public class AnimalResource {
     	}
     } 
     
+    @RequestMapping(value = Uris.ANIMALS + Uris.ID, method = RequestMethod.GET)
+    public List<Animal> showAnimals(@PathVariable String breed){	
+    	return animalController.showAnimals(breed);
+    } 
+    
     private void validateField(String field, String msg) throws InvalidAnimalUserEception {
         if (field == null || field.isEmpty()) {
             throw new InvalidAnimalUserEception(msg);

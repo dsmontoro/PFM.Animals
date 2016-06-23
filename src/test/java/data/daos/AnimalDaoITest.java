@@ -40,12 +40,12 @@ public class AnimalDaoITest {
 	
 	@Test
 	public void testFindByRaza(){
-		assertEquals(1, animalDao.findByRaza("breed1").size());
+		assertEquals(1, animalDao.findByBreed("breed1").size());
 	}
 	
 	@Test
 	public void testFindByTipo(){
-		assertEquals(4, animalDao.findByTipo(Type.CAT).size());
+		assertEquals(4, animalDao.findByType(Type.CAT).size());
 	}
 	
 	@Test
