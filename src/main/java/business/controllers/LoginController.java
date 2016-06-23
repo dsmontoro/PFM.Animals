@@ -14,29 +14,33 @@ import data.entities.User;
 public class LoginController {
 
     private TokenDao tokenDao;
-    
+
     private UserDao userDao;
-    
+
     @Autowired
     public void setTokenDao(TokenDao tokenDao) {
         this.tokenDao = tokenDao;
     }
-    
+
     @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
-    
+
     public String login(UserWrapper userWrapper) {
         User user = userDao.findByUsernameOrEmail(userWrapper.getUsername());
         assert user != null;
         if (new BCryptPasswordEncoder().matches(userWrapper.getPassword(), user.getPassword())) {
-            Token token = new Token(user);
-            tokenDao.save(token);
+            Token token;
+            token = tokenDao.findByUser(user);
+            if (token == null) {
+                token = new Token(user);
+                tokenDao.save(token);
+            }
             return token.getValue();
         }
-        
+
         return "";
-        
+
     }
 }
