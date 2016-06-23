@@ -1,10 +1,11 @@
 package data.entities;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,8 +20,8 @@ public class Animal {
 	@Column(nullable = false)
     private String name;
 	
-	@Column(nullable = false)
-    private String type;
+	@Enumerated(EnumType.STRING)
+    private Type type;
 	
 	@Column(nullable = false)
     private String breed;
@@ -41,7 +42,7 @@ public class Animal {
 	public Animal() {
     }
 	
-	public Animal(String name, String type, String breed, User association, Calendar birthdate, String description){
+	public Animal(String name, Type type, String breed, User association, Calendar birthdate, String description){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
@@ -67,11 +68,11 @@ public class Animal {
 		this.name = name;
 	}
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 

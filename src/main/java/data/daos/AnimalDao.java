@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import data.entities.Animal;
+import data.entities.Type;
 import data.entities.User;
 
 public interface AnimalDao extends JpaRepository<Animal, Integer> {
@@ -17,10 +18,10 @@ public interface AnimalDao extends JpaRepository<Animal, Integer> {
     public List<Animal> findByRaza(String raza);
 	
 	@Query("select animal from Animal animal where animal.type = ?1")
-    public List<Animal> findByTipo(String tipo);
+    public List<Animal> findByTipo(Type tipo);
 	
 	@Query("select animal from Animal animal where animal.type = ?1 and animal.breed = ?2")
-    public List<Animal> findByTipoAndRaza(String type, String breed);
+    public List<Animal> findByTipoAndRaza(Type type, String breed);
 	
 	@Query("select animal from Animal animal where animal.association = ?1")
 	public List<Animal> findByAssociation(User association);

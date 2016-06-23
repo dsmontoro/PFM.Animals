@@ -2,13 +2,14 @@ package business.wrapper;
 
 import java.util.Calendar;
 
+import data.entities.Type;
 import data.entities.User;
 
 public class AnimalWrapper {
 
 	private String name;
 	
-	private String type;
+	private Type type;
 	
 	private String breed;
 	
@@ -24,7 +25,7 @@ public class AnimalWrapper {
     	
     }
     
-    public AnimalWrapper(String name, String type, String breed, User association, Calendar birthdate, Calendar publishDate, String description){
+    public AnimalWrapper(String name, Type type, String breed, User association, Calendar birthdate, Calendar publishDate, String description){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
@@ -42,11 +43,11 @@ public class AnimalWrapper {
 		this.name = name;
 	}
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import config.PersistenceConfig;
 import config.TestsPersistenceConfig;
 import data.entities.Animal;
+import data.entities.Type;
 import data.entities.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,13 +45,13 @@ public class AnimalDaoITest {
 	
 	@Test
 	public void testFindByTipo(){
-		assertEquals(1, animalDao.findByTipo("type1").size());
+		assertEquals(4, animalDao.findByTipo(Type.CAT).size());
 	}
 	
 	@Test
 	public void testFindByTipoAndRaza(){
-		assertEquals(1, animalDao.findByTipoAndRaza("type2","breed2").size());
-		assertEquals(0, animalDao.findByTipoAndRaza("type3","breed2").size());
+		assertEquals(1, animalDao.findByTipoAndRaza(Type.CAT,"breed2").size());
+		assertEquals(0, animalDao.findByTipoAndRaza(Type.DOG,"breed2").size());
 	}
 	
 	@Test
