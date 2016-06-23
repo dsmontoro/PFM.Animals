@@ -144,10 +144,13 @@ public class AnimalController {
 		}
 	}
 	
-	public boolean modifyAnimal(int id) {
+	public boolean modifyAnimal(AnimalWrapper animal, int id) {
 	    if(!existsAnimal(id)) {
 	        return false;
 	    }
-	    return true;
+	    else {
+	        animalDao.modifyAnimal(id, animal.getName(), animal.getType(), animal.getBreed(), animal.getDescription());
+	        return true;
+	    }
 	}
 }

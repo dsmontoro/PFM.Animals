@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,8 +59,8 @@ public class AnimalResource {
     }
     
     @RequestMapping(value = Uris.ID, method = RequestMethod.PUT)
-    public void modify(@PathVariable int id) throws NotFoundAnimalException {
-        if(!animalController.modifyAnimal(id)) {
+    public void modify(@RequestBody AnimalWrapper animal, @PathVariable int id) throws NotFoundAnimalException {
+        if(!animalController.modifyAnimal(animal,id)) {
             throw new NotFoundAnimalException();
         }
     }
