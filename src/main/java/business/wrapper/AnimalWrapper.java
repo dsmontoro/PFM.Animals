@@ -1,9 +1,7 @@
 package business.wrapper;
 
 import java.util.Calendar;
-import java.util.List;
 
-import data.entities.Photo;
 import data.entities.User;
 
 public class AnimalWrapper {
@@ -21,14 +19,12 @@ public class AnimalWrapper {
     private Calendar publishDate;
 	
     private String description;
-    
-    private List<Photo> images;
-    
+        
     public AnimalWrapper(){
     	
     }
     
-    public AnimalWrapper(String name, String type, String breed, User association, Calendar birthdate, Calendar publishDate, String description, List<Photo> images){
+    public AnimalWrapper(String name, String type, String breed, User association, Calendar birthdate, Calendar publishDate, String description){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
@@ -36,7 +32,6 @@ public class AnimalWrapper {
 		this.birthdate = birthdate;
 		this.publishDate = publishDate;
 		this.description = description;
-		this.images = images;
 	}
 	    
 	public String getName() {
@@ -93,14 +88,6 @@ public class AnimalWrapper {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public List<Photo> getImages() {
-		return images;
-	}
-
-	public void setImages(List<Photo> images) {
-		this.images = images;
 	}
 
 	@Override
