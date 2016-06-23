@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import business.api.exceptions.InvalidAnimalUserEception;
 import business.api.exceptions.NotFoundAnimalException;
-import business.api.validation.AnimalValidator;
 import business.controllers.AnimalController;
 import business.wrapper.AnimalWrapper;
 import data.entities.Animal;
