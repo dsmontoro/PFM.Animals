@@ -1,6 +1,7 @@
 package business.wrapper;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import data.entities.Type;
 import data.entities.User;
@@ -11,7 +12,7 @@ public class AnimalWrapperBuilder {
 	
 	public AnimalWrapperBuilder(int suffix){
 		User association = new User();
-		animalWrapper = new AnimalWrapper("name" + suffix, Type.DOG, "breed" + suffix, association, Calendar.getInstance(), Calendar.getInstance(), "description" + suffix);
+		animalWrapper = new AnimalWrapper("name" + suffix, Type.DOG, "breed" + suffix, association.getId(), new Date(), Calendar.getInstance(), "description" + suffix);
 	}
 	
 	public AnimalWrapperBuilder(){
@@ -33,7 +34,7 @@ public class AnimalWrapperBuilder {
 		return this;
 	}
 	
-	public AnimalWrapperBuilder association(User association) {
+	public AnimalWrapperBuilder association(int association) {
 		animalWrapper.setAssociation(association);
 		return this;
 	}
@@ -43,7 +44,7 @@ public class AnimalWrapperBuilder {
 		return this;
 	}
 	
-	public AnimalWrapperBuilder birthdate(Calendar birthdate) {
+	public AnimalWrapperBuilder birthdate(Date birthdate) {
 		animalWrapper.setBirthdate(birthdate);
 		return this;
 	}

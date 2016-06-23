@@ -17,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import business.wrapper.AnimalWrapper;
 import data.daos.AnimalDao;
 import data.daos.PhotoDao;
+import data.daos.UserDao;
 import data.entities.Animal;
 import data.entities.Photo;
+import data.entities.User;
 
 @Controller
 
@@ -27,9 +29,16 @@ public class AnimalController {
 	@Autowired
     ServletContext servletContext;
 	
+	private UserDao userDao;
+	
 	private AnimalDao animalDao;
 
 	private PhotoDao photoDao;
+	
+	@Autowired
+	public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 	
 	@Autowired
     public void setAnimalDao(AnimalDao animalDao) {
@@ -59,7 +68,8 @@ public class AnimalController {
 	
 	public boolean registration(AnimalWrapper animalWrapper, MultipartFile[] images) {
         
-		Animal animal = new Animal(animalWrapper.getName(), animalWrapper.getType() , animalWrapper.getBreed() , animalWrapper.getAssociation() , animalWrapper.getBirthdate() , animalWrapper.getDescription());
+	    User association = userDao.findUserById(animalWrapper.getIdAssociation());
+		Animal animal = new Animal(animalWrapper.getName(), animalWrapper.getType() , animalWrapper.getBreed() , association , animalWrapper.getBirthdate() , animalWrapper.getDescription());
         animalDao.save(animal);
 				 
         String randomName = "";
