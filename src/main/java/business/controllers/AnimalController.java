@@ -91,6 +91,22 @@ public class AnimalController {
     	return animalList;
     }
 
+    public List<AnimalState> showAssociationAnimals(int id) {
+    	User association = userDao.findUserById(id);
+    	List<AnimalState> animalList = new ArrayList<>();
+    	for (Animal animal : animalDao.findByAssociation(association)) {
+    		List<PhotoState> imageList = new ArrayList<>();
+        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        		PhotoState photoState = new PhotoState(image);
+        		imageList.add(photoState);
+        	}
+        	AssociationDetails associationDetails = new AssociationDetails(animal.getAssociation());
+        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), associationDetails, animal.getBirthdate(), animal.getDescription(), imageList);
+            animalList.add(animalState);
+    	}
+    	return animalList;
+	}
+    
     public boolean registration(int id, AnimalWrapper animalWrapper, MultipartFile[] images) {
         User association = userDao.findUserById(id);
         if (association != null) {
@@ -182,4 +198,5 @@ public class AnimalController {
             return true;
         }
     }
+	
 }
