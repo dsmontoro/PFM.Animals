@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import business.api.exceptions.InvalidAnimalTypeException;
 import business.api.exceptions.InvalidAnimalUserEception;
 import business.api.exceptions.NotFoundAnimalException;
 import business.controllers.AnimalController;
@@ -47,12 +48,18 @@ public class AnimalResource {
     	return animalController.showAssociationAnimals(id);
     }
     
-    @RequestMapping(value = Uris.TYPE, method = RequestMethod.GET)
-    public List<AnimalState> showTypeAnimals(@PathVariable Type type) {
-    	return animalController.showTypeAnimals(type);
+    @RequestMapping(value = Uris.ANIMALS + Uris.TYPE + Uris.ID, method = RequestMethod.GET)
+    public List<AnimalState> showTypeAnimals(@PathVariable String type) throws InvalidAnimalTypeException{
+    	if(validateType(type)){
+    		return animalController.showTypeAnimals(Type.valueOf(type));
+    	}
+    	else{
+    		throw new InvalidAnimalTypeException();
+    	}
+    	
     }
     
-    @RequestMapping(value = Uris.BREED, method = RequestMethod.GET)
+    @RequestMapping(value = Uris.ANIMALS + Uris.BREED + Uris.ID, method = RequestMethod.GET)
     public List<AnimalState> showBreedAnimals(@PathVariable String breed) {
     	return animalController.showBreedAnimals(breed);
     }
@@ -86,4 +93,15 @@ public class AnimalResource {
             throw new InvalidAnimalUserEception(msg);
         }
     }
+    
+    private boolean validateType(String type){
+    	boolean validate = false;
+    	
+    	for(Type tp : Type.values())
+    		if(tp.toString() == type)
+    			validate = true;
+    	
+    	return validate;
+    }
+    
 }
