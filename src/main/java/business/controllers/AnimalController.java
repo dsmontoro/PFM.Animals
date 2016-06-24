@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import business.wrapper.AnimalState;
 import business.wrapper.AnimalWrapper;
 import business.wrapper.AssociationDetails;
+import business.wrapper.PhotoState;
 import data.daos.AnimalDao;
 import data.daos.PhotoDao;
 import data.daos.UserDao;
@@ -63,13 +64,13 @@ public class AnimalController {
     public List<AnimalState> showAnimals() {
         List<AnimalState> animalList = new ArrayList<>();
         for (Animal animal : animalDao.findAll()) {
-            List<Photo> imageList = new ArrayList<>();
-            for (Photo image : photoDao.findPhotosByAnimal(animal)) {
-                imageList.add(image);
-            }
-            AssociationDetails association = new AssociationDetails(animal.getAssociation());
-            AnimalState animalState = new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), association,
-                    animal.getBirthdate(), animal.getDescription(), imageList);
+        	List<PhotoState> imageList = new ArrayList<>();
+        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        		PhotoState photoState = new PhotoState(image);
+        		imageList.add(photoState);
+        	}
+        	AssociationDetails association = new AssociationDetails(animal.getAssociation());
+        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
             animalList.add(animalState);
         }
         return animalList;
