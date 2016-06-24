@@ -50,6 +50,13 @@ public class AnimalResource {
     		throw new NotFoundAnimalException();
     	}
     }
+   
+    @RequestMapping(value = Uris.ID, method = RequestMethod.PUT)
+    public void modify(@RequestBody AnimalWrapper animal, @PathVariable int id) throws NotFoundAnimalException {
+        if(!animalController.modifyAnimal(animal,id)) {
+            throw new NotFoundAnimalException();
+        }
+    }
     
     private void validateField(String field, String msg) throws InvalidAnimalUserEception {
         if (field == null || field.isEmpty()) {
