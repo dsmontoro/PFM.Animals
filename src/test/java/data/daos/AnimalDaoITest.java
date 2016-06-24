@@ -40,18 +40,18 @@ public class AnimalDaoITest {
 	
 	@Test
 	public void testFindByRaza(){
-		assertEquals(1, animalDao.findByRaza("breed1").size());
+		assertEquals(1, animalDao.findByBreed("breed1").size());
 	}
 	
 	@Test
 	public void testFindByTipo(){
-		assertEquals(4, animalDao.findByTipo(Type.CAT).size());
+		assertEquals(4, animalDao.findByType(Type.CAT).size());
 	}
 	
 	@Test
 	public void testFindByTipoAndRaza(){
-		assertEquals(1, animalDao.findByTipoAndRaza(Type.CAT,"breed2").size());
-		assertEquals(0, animalDao.findByTipoAndRaza(Type.DOG,"breed2").size());
+		assertEquals(1, animalDao.findByTypeAndBreed(Type.CAT,"breed2").size());
+		assertEquals(0, animalDao.findByTypeAndBreed(Type.DOG,"breed2").size());
 	}
 	
 	@Test
