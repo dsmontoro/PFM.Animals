@@ -29,5 +29,7 @@ public class Uris {
     public static final String ANIMALS = "/animals";
     
     public static final String DATA = "/data";
+    
+    public static final String NEW = "/new";
 
 }

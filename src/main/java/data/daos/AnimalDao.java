@@ -30,4 +30,7 @@ public interface AnimalDao extends JpaRepository<Animal, Integer> {
 	@Modifying
 	@Query("update Animal a set a.name=?2, a.type=?3, a.breed=?4, a.description=?5 where a.id=?1")
     public void modifyAnimal(int id, String name, Type type, String breed, String description);
+
+	@Query(value = "select * from Animal order by publishDate >= date_sub(NOW(), INTERVAL 31 DAY) LIMIT 8", nativeQuery=true)
+	public List<Animal> findNewAnimals();
 }

@@ -75,6 +75,21 @@ public class AnimalController {
         }
         return animalList;
     }
+    
+    public List<AnimalState> showNewAnimals() {
+    	List<AnimalState> animalList = new ArrayList<>();
+    	for (Animal animal : animalDao.findNewAnimals()) {
+    		List<PhotoState> imageList = new ArrayList<>();
+        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        		PhotoState photoState = new PhotoState(image);
+        		imageList.add(photoState);
+        	}
+        	AssociationDetails association = new AssociationDetails(animal.getAssociation());
+        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
+            animalList.add(animalState);
+    	}
+    	return animalList;
+    }
 
     public boolean registration(int id, AnimalWrapper animalWrapper, MultipartFile[] images) {
         User association = userDao.findUserById(id);

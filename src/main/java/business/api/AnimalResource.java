@@ -36,6 +36,11 @@ public class AnimalResource {
         return animalController.showAnimals();
     }
     
+    @RequestMapping(value = Uris.NEW, method = RequestMethod.GET)
+    public List<AnimalState> showNewAnimals() {
+    	return animalController.showNewAnimals();
+    }
+    
     @RequestMapping(value = Uris.ASSOCIATIONS + Uris.ID, method = RequestMethod.POST)
     public void registration(@PathVariable int id, @Valid final AnimalWrapper animalWrapper, @RequestParam(value = "image", required = false) MultipartFile[] images) throws InvalidAnimalUserEception{    	      	   	
     	validateField(animalWrapper.getName(), "name");
