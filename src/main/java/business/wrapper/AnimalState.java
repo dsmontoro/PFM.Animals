@@ -20,13 +20,13 @@ private String name;
 	
     private String description;
     
-    private List<Photo> images;
+    private List<PhotoState> images;
         
     public AnimalState(){
     	
     }
     
-    public AnimalState(String name, Type type, String breed, AssociationDetails association, Date birthdate, String description, List<Photo> images){
+    public AnimalState(String name, Type type, String breed, AssociationDetails association, Date birthdate, String description, List<PhotoState> images){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
@@ -84,11 +84,11 @@ private String name;
 		this.description = description;
 	}
 
-	public List<Photo> getImages() {
+	public List<PhotoState> getImages() {
 		return images;
 	}
 
-	public void setImages(List<Photo> images) {
+	public void setImages(List<PhotoState> images) {
 		this.images = images;
 	}
 	    

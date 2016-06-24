@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import business.wrapper.AnimalState;
 import business.wrapper.AnimalWrapper;
 import business.wrapper.AssociationDetails;
+import business.wrapper.PhotoState;
 import data.daos.AnimalDao;
 import data.daos.PhotoDao;
 import data.daos.UserDao;
@@ -59,9 +60,10 @@ public class AnimalController {
 	public List<AnimalState> showAnimals() {
         List<AnimalState> animalList = new ArrayList<>();
         for (Animal animal : animalDao.findAll()) {
-        	List<Photo> imageList = new ArrayList<>();
+        	List<PhotoState> imageList = new ArrayList<>();
         	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
-        		imageList.add(image);
+        		PhotoState photoState = new PhotoState(image);
+        		imageList.add(photoState);
         	}
         	AssociationDetails association = new AssociationDetails(animal.getAssociation());
         	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
