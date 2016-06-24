@@ -10,11 +10,14 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import business.wrapper.AnimalState;
 import business.wrapper.AnimalWrapper;
+import business.wrapper.AssociationDetails;
 import data.daos.AnimalDao;
 import data.daos.PhotoDao;
 import data.daos.UserDao;
 import data.entities.Animal;
+import data.entities.Photo;
 import data.entities.User;
 
 @Controller
@@ -53,10 +56,16 @@ public class AnimalController {
     // consider using a Map<String,Boolean> to say whether the identifier is being used or not
     final Set<String> identifiers = new HashSet<String>();
 	
-	public List<Animal> showAnimals() {
-        List<Animal> animalList = new ArrayList<>();
+	public List<AnimalState> showAnimals() {
+        List<AnimalState> animalList = new ArrayList<>();
         for (Animal animal : animalDao.findAll()) {
-            animalList.add(animal);
+        	List<Photo> imageList = new ArrayList<>();
+        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        		imageList.add(image);
+        	}
+        	AssociationDetails association = new AssociationDetails(animal.getAssociation());
+        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
+            animalList.add(animalState);
         }
         return animalList;
     }

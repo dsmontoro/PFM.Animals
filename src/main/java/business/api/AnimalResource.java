@@ -7,15 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import business.api.exceptions.InvalidAnimalUserEception;
 import business.api.exceptions.NotFoundAnimalException;
 import business.controllers.AnimalController;
+import business.wrapper.AnimalState;
 import business.wrapper.AnimalWrapper;
-import data.entities.Animal;
 
 @RestController
 @RequestMapping(Uris.SERVLET_MAP + Uris.ANIMALS)
@@ -30,7 +28,7 @@ public class AnimalResource {
     }
        
     @RequestMapping(method = RequestMethod.GET)
-    public List<Animal> showAnimals() {
+    public List<AnimalState> showAnimals() {
         return animalController.showAnimals();
     }
     

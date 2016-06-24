@@ -1,36 +1,41 @@
 package business.wrapper;
 
 import java.util.Date;
+import java.util.List;
 
+import data.entities.Photo;
 import data.entities.Type;
 
-public class AnimalWrapper {
+public class AnimalState {
 
-	private String name;
+private String name;
 	
 	private Type type;
 	
 	private String breed;
 	
-	private int idAssociation;
+	private AssociationDetails association;
 	
 	private Date birthdate;	
 	
     private String description;
+    
+    private List<Photo> images;
         
-    public AnimalWrapper(){
+    public AnimalState(){
     	
     }
     
-    public AnimalWrapper(String name, Type type, String breed, int idAssociation, Date birthdate, String description){
+    public AnimalState(String name, Type type, String breed, AssociationDetails association, Date birthdate, String description, List<Photo> images){
 		this.name = name;
 		this.type = type;
 		this.breed = breed;
-		this.idAssociation = idAssociation;
+		this.association = association;
 		this.birthdate = birthdate;
 		this.description = description;
+		this.images = images;
 	}
-	    
+
 	public String getName() {
 		return name;
 	}
@@ -55,12 +60,12 @@ public class AnimalWrapper {
 		this.breed = breed;
 	}
 
-	public int getIdAssociation() {
-		return idAssociation;
+	public AssociationDetails getAssociation() {
+		return association;
 	}
 
-	public void setAssociation(int idAssociation) {
-		this.idAssociation = idAssociation;
+	public void setAssociation(AssociationDetails association) {
+		this.association = association;
 	}
 
 	public Date getBirthdate() {
@@ -79,5 +84,13 @@ public class AnimalWrapper {
 		this.description = description;
 	}
 
+	public List<Photo> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Photo> images) {
+		this.images = images;
+	}
+	    
 	
 }
