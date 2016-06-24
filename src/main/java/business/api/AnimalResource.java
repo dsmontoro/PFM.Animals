@@ -18,6 +18,7 @@ import business.api.exceptions.NotFoundAnimalException;
 import business.controllers.AnimalController;
 import business.wrapper.AnimalState;
 import business.wrapper.AnimalWrapper;
+import data.entities.Type;
 
 @RestController
 @RequestMapping(Uris.SERVLET_MAP + Uris.ANIMALS)
@@ -44,6 +45,16 @@ public class AnimalResource {
     @RequestMapping(value = Uris.ASSOCIATIONS + Uris.ID, method = RequestMethod.GET)
     public List<AnimalState> showAssociationAnimals(@PathVariable int id) {
     	return animalController.showAssociationAnimals(id);
+    }
+    
+    @RequestMapping(value = Uris.TYPE, method = RequestMethod.GET)
+    public List<AnimalState> showTypeAnimals(@PathVariable Type type) {
+    	return animalController.showTypeAnimals(type);
+    }
+    
+    @RequestMapping(value = Uris.BREED, method = RequestMethod.GET)
+    public List<AnimalState> showBreedAnimals(@PathVariable String breed) {
+    	return animalController.showBreedAnimals(breed);
     }
     
     @RequestMapping(value = Uris.ASSOCIATIONS + Uris.ID, method = RequestMethod.POST)

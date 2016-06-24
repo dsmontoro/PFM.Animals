@@ -31,5 +31,9 @@ public class Uris {
     public static final String DATA = "/data";
     
     public static final String NEW = "/new";
+    
+    public static final String BREED = "/{breed}";
+    
+    public static final String TYPE = "/{type}";
 
 }
