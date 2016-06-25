@@ -87,7 +87,7 @@ public class UserResourceFunctionalTesting {
     	
     	user.setAddress("address");
     	
-    	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).pathId(associationState.getId()).body(user).basicAuth(token.getToken(), "").put().build();
+    	new RestBuilder<Object>(RestService.URL).path(Uris.USERS).path(Uris.ASSOCIATIONS).pathId(associationState.getId()).body(user).basicAuth(token.getToken(), "").post().build();
     	
     }
     
