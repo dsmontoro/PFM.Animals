@@ -61,17 +61,6 @@ public class UserController {
         }
     }
 
-    public List<UserState> showUsers() {
-        List<UserState> userList = new ArrayList<>();
-        List<User> usersList = new ArrayList<>();
-        usersList = (List<User>) userDao.findAllUsers();
-        for (User user : usersList) {
-            UserState userState = new UserState(user);
-            userList.add(userState);
-        }
-        return userList;
-    }
-
     public List<AssociationState> showAssociations() {
         List<AssociationState> associationList = new ArrayList<>();
         for (User user : userDao.findAllAssociations()) {

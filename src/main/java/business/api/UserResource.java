@@ -36,11 +36,6 @@ public class UserResource {
         }
     }    
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<UserState> showUsers() {
-        return userController.showUsers();
-    }
-
     private void validateField(String field, String msg) throws InvalidUserFieldException {
         if (field == null || field.isEmpty()) {
             throw new InvalidUserFieldException(msg);
