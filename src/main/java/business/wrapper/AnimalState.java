@@ -3,12 +3,11 @@ package business.wrapper;
 import java.util.Date;
 import java.util.List;
 
-import data.entities.Photo;
 import data.entities.Type;
 
 public class AnimalState {
 
-private String name;
+    private String name;
 	
 	private Type type;
 	
