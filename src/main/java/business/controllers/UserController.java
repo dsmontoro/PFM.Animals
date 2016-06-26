@@ -13,9 +13,13 @@ import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
 import business.wrapper.UserState;
 import business.wrapper.UserWrapper;
+import data.daos.AnimalDao;
 import data.daos.AuthorizationDao;
+import data.daos.PhotoDao;
 import data.daos.UserDao;
+import data.entities.Animal;
 import data.entities.Authorization;
+import data.entities.Photo;
 import data.entities.Role;
 import data.entities.User;
 
@@ -25,6 +29,10 @@ public class UserController {
     private UserDao userDao;
 
     private AuthorizationDao authorizationDao;
+    
+    private AnimalDao animalDao;
+    
+    private PhotoDao photoDao;
 
     private MailService mailService;
 
@@ -125,6 +133,12 @@ public class UserController {
     public void deleteAssociation(int id) {
         User association = userDao.findUserById(id);
         if (association != null) {
+            for (Animal animal : animalDao.findByAssociation(association)) {
+                for (Photo photo : photoDao.findByAnimal(animal)) {
+                    photoDao.delete(photo);
+                }
+                animalDao.delete(animal);
+            }
             userDao.delete(association);
         }
     }
