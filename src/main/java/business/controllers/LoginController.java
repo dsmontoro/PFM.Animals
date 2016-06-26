@@ -40,7 +40,7 @@ public class LoginController {
             return token.getValue();
         }
 
-        return "";
+        return null;
 
     }
 }

@@ -23,14 +23,6 @@ public class RestService {
         return token.getToken();
     }
     
-    public String registerAndLoginUser() {
-        UserWrapper user = new UserWrapperBuilder().build();
-        new RestBuilder<Object>(URL).path(Uris.USERS).body(user).post().build();
-        TokenWrapper token = new RestBuilder<TokenWrapper>(URL).path(Uris.LOGIN).body(user)
-                .clazz(TokenWrapper.class).post().build();
-        return token.getToken();
-    }   
-    
     public void registerAsociacions(int numAssociations) {
         for (int i = 0; i < numAssociations; i++) {
             UserWrapper user = new UserWrapperBuilder(i).build();

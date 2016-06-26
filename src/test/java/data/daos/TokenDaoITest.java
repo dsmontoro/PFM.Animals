@@ -29,7 +29,7 @@ public class TokenDaoITest {
     private DaosService daosService;
    
     @Test 
-    public void testFindByAssociation() {
+    public void testFindByUser() {
         Token token = (Token) daosService.getMap().get("ta1");
         User association = (User) daosService.getMap().get("a4");
         assertEquals(token, tokenDao.findByUser(token.getUser()));
