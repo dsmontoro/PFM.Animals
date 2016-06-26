@@ -34,8 +34,8 @@ public class AnimalDaoITest {
 	@Test
     public void testFindByAnimalId() {
         Animal a1 = (Animal) daosService.getMap().get("name1");
-        assertEquals(a1.getId(), animalDao.findByAnimalId(a1.getId()).getId());
-        assertNull(animalDao.findByAnimalId(0));
+        assertEquals(a1.getId(), animalDao.findById(a1.getId()).getId());
+        assertNull(animalDao.findById(0));
     }
 	
 	@Test
@@ -46,12 +46,6 @@ public class AnimalDaoITest {
 	@Test
 	public void testFindByTipo(){
 		assertEquals(4, animalDao.findByType(Type.CAT).size());
-	}
-	
-	@Test
-	public void testFindByTipoAndRaza(){
-		assertEquals(1, animalDao.findByTypeAndBreed(Type.CAT,"breed2").size());
-		assertEquals(0, animalDao.findByTypeAndBreed(Type.DOG,"breed2").size());
 	}
 	
 	@Test
