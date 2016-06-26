@@ -1,5 +1,6 @@
 package api;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,5 +29,10 @@ RestService restService = new RestService();
     	for (int i = 0; i < 4; i++) {
             new RestBuilder<Object>(RestService.URL).path(Uris.ANIMALS).pathId(i+1).delete().build();
         }
+    }
+    
+    @After
+    public void deleteAll() {
+        new RestService().deleteAll();
     }
 }

@@ -66,7 +66,7 @@ public class AnimalController {
         List<AnimalState> animalList = new ArrayList<>();
         for (Animal animal : animalDao.findAll()) {
         	List<PhotoState> imageList = new ArrayList<>();
-        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        	for (Photo image : photoDao.findByAnimal(animal)) {
         		PhotoState photoState = new PhotoState(image);
         		imageList.add(photoState);
         	}
@@ -81,7 +81,7 @@ public class AnimalController {
     	List<AnimalState> animalList = new ArrayList<>();
     	for (Animal animal : animalDao.findNewAnimals()) {
     		List<PhotoState> imageList = new ArrayList<>();
-        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        	for (Photo image : photoDao.findByAnimal(animal)) {
         		PhotoState photoState = new PhotoState(image);
         		imageList.add(photoState);
         	}
@@ -97,7 +97,7 @@ public class AnimalController {
     	List<AnimalState> animalList = new ArrayList<>();
     	for (Animal animal : animalDao.findByAssociation(association)) {
     		List<PhotoState> imageList = new ArrayList<>();
-        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        	for (Photo image : photoDao.findByAnimal(animal)) {
         		PhotoState photoState = new PhotoState(image);
         		imageList.add(photoState);
         	}
@@ -113,7 +113,7 @@ public class AnimalController {
     	
     	for(Animal animal : animalDao.findByType(type)){
     		List<PhotoState> imageList = new ArrayList<>();
-        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        	for (Photo image : photoDao.findByAnimal(animal)) {
         		PhotoState photoState = new PhotoState(image);
         		imageList.add(photoState);
         	}
@@ -130,7 +130,7 @@ public class AnimalController {
     	
     	for(Animal animal : animalDao.findByBreed(breed)){
     		List<PhotoState> imageList = new ArrayList<>();
-        	for (Photo image : photoDao.findPhotosByAnimal(animal)) {
+        	for (Photo image : photoDao.findByAnimal(animal)) {
         		PhotoState photoState = new PhotoState(image);
         		imageList.add(photoState);
         	}

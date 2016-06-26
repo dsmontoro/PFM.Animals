@@ -10,6 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
     UserDaoITest.class,
     AuthorizationDaoITest.class,
     AnimalDaoITest.class,
+    PhotoDaoITest.class
 })
 public class AllDaosITests {
 
