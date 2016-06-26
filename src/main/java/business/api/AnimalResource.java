@@ -48,7 +48,7 @@ public class AnimalResource {
     	return animalController.showAssociationAnimals(id);
     }
     
-    @RequestMapping(value = Uris.ANIMALS + Uris.TYPE + Uris.ID, method = RequestMethod.GET)
+    @RequestMapping(value = Uris.TYPE + Uris.ID, method = RequestMethod.GET)
     public List<AnimalState> showTypeAnimals(@PathVariable String type) throws InvalidAnimalTypeException{
     	if(validateType(type)){
     		return animalController.showTypeAnimals(Type.valueOf(type));
@@ -59,7 +59,7 @@ public class AnimalResource {
     	
     }
     
-    @RequestMapping(value = Uris.ANIMALS + Uris.BREED + Uris.ID, method = RequestMethod.GET)
+    @RequestMapping(value = Uris.BREED + Uris.ID, method = RequestMethod.GET)
     public List<AnimalState> showBreedAnimals(@PathVariable String breed) {
     	return animalController.showBreedAnimals(breed);
     }
