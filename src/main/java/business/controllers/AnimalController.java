@@ -220,6 +220,9 @@ public class AnimalController {
         if (!existsAnimal(id)) {
             return false;
         } else {
+            for (Photo photo : photoDao.findByAnimal(animalDao.findById(id))) {
+                photoDao.delete(photo);
+            }
             animalDao.delete(id);
             return true;
         }
