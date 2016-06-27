@@ -77,6 +77,11 @@ public class AnimalResource {
         }
     }
     
+    @RequestMapping(value = Uris.DATA + Uris.ID, method = RequestMethod.GET)
+    public AnimalState showAnimal(@PathVariable int id) {
+    	return animalController.showAnimal(id);
+    }
+    
     @RequestMapping(value = Uris.ID, method = RequestMethod.DELETE)
     public void delete(@PathVariable int id) throws NotFoundAnimalException
     {
@@ -98,14 +103,6 @@ public class AnimalResource {
         }
     }
     
-    private boolean validateType(String type){
-    	boolean validate = false;
-    	
-    	for(Type tp : Type.values())
-    		if(tp.toString() == type)
-    			validate = true;
-    	
-    	return validate;
-    }
+
     
 }

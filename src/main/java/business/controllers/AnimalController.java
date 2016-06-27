@@ -3,6 +3,7 @@ package business.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -236,5 +237,15 @@ public class AnimalController {
             return true;
         }
     }
+
+	public AnimalState showAnimal(int id) {
+		Animal a = animalDao.findById(id);
+		List<PhotoState> photos = new ArrayList<>();
+		for (Photo photo: photoDao.findByAnimal(a)) {
+			PhotoState photoState = new PhotoState(photo);			
+			photos.add(photoState);
+		}		
+		return new AnimalState(a.getName(), a.getType(), a.getBreed(), new AssociationDetails(a.getAssociation()), a.getBirthdate(), a.getDescription(), photos);
+	}
 	
 }
