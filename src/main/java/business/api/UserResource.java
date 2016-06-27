@@ -1,7 +1,5 @@
 package business.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import business.api.exceptions.AlreadyExistUserFieldException;
 import business.api.exceptions.InvalidUserFieldException;
 import business.controllers.UserController;
-import business.wrapper.UserState;
 import business.wrapper.UserWrapper;
 
 @RestController
@@ -19,7 +16,7 @@ import business.wrapper.UserWrapper;
 public class UserResource {
 
     private UserController userController;
-    
+
     @Autowired
     public void setUserController(UserController userController) {
         this.userController = userController;
@@ -34,14 +31,12 @@ public class UserResource {
         if (!this.userController.registration(userWrapper)) {
             throw new AlreadyExistUserFieldException();
         }
-    }    
+    }
 
     private void validateField(String field, String msg) throws InvalidUserFieldException {
         if (field == null || field.isEmpty()) {
             throw new InvalidUserFieldException(msg);
         }
     }
-
-    
 
 }

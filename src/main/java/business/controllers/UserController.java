@@ -11,7 +11,6 @@ import business.api.MailService;
 import business.api.exceptions.AlreadyExistUserFieldException;
 import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
-import business.wrapper.UserState;
 import business.wrapper.UserWrapper;
 import data.daos.AnimalDao;
 import data.daos.AuthorizationDao;
