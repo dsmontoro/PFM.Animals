@@ -34,6 +34,12 @@ public class Uris {
     
     public static final String BREED = "/breed";
     
-    public static final String TYPE = "/type";
+    public static final String CATS = "/cats";
+    
+    public static final String DOGS = "/dogs";
+    
+    public static final String OTHERS = "/others";
+    
+    
 
 }

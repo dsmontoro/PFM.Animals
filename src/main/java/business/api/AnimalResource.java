@@ -48,15 +48,19 @@ public class AnimalResource {
     	return animalController.showAssociationAnimals(id);
     }
     
-    @RequestMapping(value = Uris.TYPE + Uris.ID, method = RequestMethod.GET)
-    public List<AnimalState> showTypeAnimals(@PathVariable String type) throws InvalidAnimalTypeException{
-    	if(validateType(type)){
-    		return animalController.showTypeAnimals(Type.valueOf(type));
-    	}
-    	else{
-    		throw new InvalidAnimalTypeException();
-    	}
-    	
+    @RequestMapping(value = Uris.CATS, method = RequestMethod.GET)
+    public List<AnimalState> showCats() {
+    	return animalController.showTypeAnimals(Type.CAT);    	
+    }
+    
+    @RequestMapping(value = Uris.DOGS, method = RequestMethod.GET)
+    public List<AnimalState> showDogs() {
+    	return animalController.showTypeAnimals(Type.CAT);    	
+    }
+    
+    @RequestMapping(value = Uris.OTHERS, method = RequestMethod.GET)
+    public List<AnimalState> showOthers() {
+    	return animalController.showTypeAnimals(Type.OTHER);    	
     }
     
     @RequestMapping(value = Uris.BREED + Uris.ID, method = RequestMethod.GET)
