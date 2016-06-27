@@ -55,7 +55,7 @@ public class AnimalResource {
     
     @RequestMapping(value = Uris.DOGS, method = RequestMethod.GET)
     public List<AnimalState> showDogs() {
-    	return animalController.showTypeAnimals(Type.CAT);    	
+    	return animalController.showTypeAnimals(Type.DOG);    	
     }
     
     @RequestMapping(value = Uris.OTHERS, method = RequestMethod.GET)
