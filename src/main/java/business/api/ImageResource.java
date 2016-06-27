@@ -36,7 +36,7 @@ public class ImageResource {
 
     @ResponseBody
     @RequestMapping(value = "/photo/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] testphoto(@PathVariable String id) throws IOException {
+    public byte[] photo(@PathVariable String id) throws IOException {
         InputStream in = servletContext.getResourceAsStream("/images/" + id + ".jpg");
         return IOUtils.toByteArray(in);
     }
