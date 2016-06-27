@@ -7,7 +7,9 @@ import data.entities.Type;
 
 public class AnimalState {
 
-    private String name;
+    private int id;
+	
+	private String name;
 	
 	private Type type;
 	
@@ -25,14 +27,23 @@ public class AnimalState {
     	
     }
     
-    public AnimalState(String name, Type type, String breed, AssociationDetails association, Date birthdate, String description, List<PhotoState> images){
-		this.name = name;
+    public AnimalState(int id, String name, Type type, String breed, AssociationDetails association, Date birthdate, String description, List<PhotoState> images){
+		this.id = id;
+    	this.name = name;
 		this.type = type;
 		this.breed = breed;
 		this.association = association;
 		this.birthdate = birthdate;
 		this.description = description;
 		this.images = images;
+	}
+    
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {

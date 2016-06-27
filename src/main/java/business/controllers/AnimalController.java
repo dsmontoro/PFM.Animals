@@ -72,7 +72,7 @@ public class AnimalController {
         		imageList.add(photoState);
         	}
         	AssociationDetails association = new AssociationDetails(animal.getAssociation());
-        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
+        	AnimalState animalState= new AnimalState(animal.getId(), animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
             animalList.add(animalState);
         }
         return animalList;
@@ -87,7 +87,7 @@ public class AnimalController {
         		imageList.add(photoState);
         	}
         	AssociationDetails association = new AssociationDetails(animal.getAssociation());
-        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
+        	AnimalState animalState= new AnimalState(animal.getId(), animal.getName(), animal.getType(), animal.getBreed(), association, animal.getBirthdate(), animal.getDescription(), imageList);
             animalList.add(animalState);
     	}
     	return animalList;
@@ -103,7 +103,7 @@ public class AnimalController {
         		imageList.add(photoState);
         	}
         	AssociationDetails associationDetails = new AssociationDetails(animal.getAssociation());
-        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), associationDetails, animal.getBirthdate(), animal.getDescription(), imageList);
+        	AnimalState animalState= new AnimalState(animal.getId(), animal.getName(), animal.getType(), animal.getBreed(), associationDetails, animal.getBirthdate(), animal.getDescription(), imageList);
             animalList.add(animalState);
     	}
     	return animalList;
@@ -119,7 +119,7 @@ public class AnimalController {
         		imageList.add(photoState);
         	}
         	AssociationDetails associationDetails = new AssociationDetails(animal.getAssociation());
-        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), associationDetails, animal.getBirthdate(), animal.getDescription(), imageList);
+        	AnimalState animalState= new AnimalState(animal.getId(), animal.getName(), animal.getType(), animal.getBreed(), associationDetails, animal.getBirthdate(), animal.getDescription(), imageList);
             animalList.add(animalState);
     	}
     	
@@ -136,7 +136,7 @@ public class AnimalController {
         		imageList.add(photoState);
         	}
         	AssociationDetails associationDetails = new AssociationDetails(animal.getAssociation());
-        	AnimalState animalState= new AnimalState(animal.getName(), animal.getType(), animal.getBreed(), associationDetails, animal.getBirthdate(), animal.getDescription(), imageList);
+        	AnimalState animalState= new AnimalState(animal.getId(), animal.getName(), animal.getType(), animal.getBreed(), associationDetails, animal.getBirthdate(), animal.getDescription(), imageList);
             animalList.add(animalState);
     	}
     	
@@ -245,7 +245,7 @@ public class AnimalController {
 			PhotoState photoState = new PhotoState(photo);			
 			photos.add(photoState);
 		}		
-		return new AnimalState(a.getName(), a.getType(), a.getBreed(), new AssociationDetails(a.getAssociation()), a.getBirthdate(), a.getDescription(), photos);
+		return new AnimalState(a.getId(), a.getName(), a.getType(), a.getBreed(), new AssociationDetails(a.getAssociation()), a.getBirthdate(), a.getDescription(), photos);
 	}
 	
 }
