@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import business.api.exceptions.AlreadyExistUserFieldException;
+import business.api.exceptions.ExpiredUserTokenException;
 import business.controllers.UserController;
 import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
@@ -38,7 +39,7 @@ public class AssociationResource {
     }
     
     @RequestMapping(value = Uris.DATA, method = RequestMethod.GET)
-    public AssociationDetails showAssociation(@RequestParam String tokenValue) {
+    public AssociationDetails showAssociation(@RequestParam String tokenValue) throws ExpiredUserTokenException {
         return userController.showAssociationData(tokenValue);
     }
     

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import business.api.MailService;
 import business.api.exceptions.AlreadyExistUserFieldException;
+import business.api.exceptions.ExpiredUserTokenException;
 import business.wrapper.AssociationDetails;
 import business.wrapper.AssociationState;
 import business.wrapper.UserWrapper;
@@ -83,10 +84,14 @@ public class UserController {
     }
 
 
-    public AssociationDetails showAssociationData(String tokenValue) {
+    public AssociationDetails showAssociationData(String tokenValue) throws ExpiredUserTokenException {
         User association = userDao.findByTokenValue(tokenValue);
-        assert association != null;
-        return (new AssociationDetails(association));
+        if (association != null) {
+        	return (new AssociationDetails(association));
+        }
+        else  {
+        	throw new ExpiredUserTokenException("El token ha caducado");
+        }
     }
 
 
