@@ -64,7 +64,7 @@
 				<database.url>jdbc:mysql://localhost:3306/animals</database.url>
 				<database.user>root</database.user>
 				<database.password></database.password>
-				<hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+				<hibernate.hbm2ddl.auto>validate</hibernate.hbm2ddl.auto>
 				<tomcat.url>http://localhost:8080/manager/text</tomcat.url>
 			</properties>
 		</profile>

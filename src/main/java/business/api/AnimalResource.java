@@ -82,7 +82,7 @@ public class AnimalResource {
     	return animalController.showAnimal(id);
     }
     
-    @RequestMapping(value = Uris.ID, method = RequestMethod.DELETE)
+    @RequestMapping(value = Uris.ID, method = RequestMethod.GET)
     public void delete(@PathVariable int id) throws NotFoundAnimalException {
         if (!animalController.deleteAnimal(id)) {
             throw new NotFoundAnimalException();

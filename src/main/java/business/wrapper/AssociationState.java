@@ -12,19 +12,23 @@ public class AssociationState {
 
     private String imgName;
 
+    private String association;
+
     public AssociationState() {
     }
 
-    public AssociationState(int id, String username, String address, String imgName) {
+    public AssociationState(int id, String username, String address, String imgName, String association) {
         super();
         this.id = id;
         this.username = username;
         this.address = address;
         this.imgName = imgName;
+        this.association = association;
     }
 
     public AssociationState(User association) {
-        this(association.getId(), association.getUsername(), association.getAddress(), association.getImgName());
+        this(association.getId(), association.getUsername(), association.getAddress(), association.getImgName(),
+                association.getAssociation());
     }
 
     public int getId() {
@@ -59,9 +63,18 @@ public class AssociationState {
         this.imgName = imgName;
     }
 
+    public String getAssociation() {
+        return association;
+    }
+
+    public void setAssociation(String association) {
+        this.association = association;
+    }
+
     @Override
     public String toString() {
-        return "AssociationState [id=" + id + ", username=" + username + ", address=" + address + ", imgName=" + imgName + "]";
+        return "AssociationState [id=" + id + ", username=" + username + ", address=" + address + ", imgName=" + imgName + ", association="
+                + association + "]";
     }
 
 }
